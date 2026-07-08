@@ -114,11 +114,38 @@ centerline when placed, not the file's bounding box edges (per brand guide produ
 note) — the current usage (footer, roughly centered) is a safe default, but be careful
 if repositioning it.
 
+## Stock photography (temporary, until real AAEC media arrives)
+
+`/assets/images/stock/` holds royalty-free Wikimedia Commons photos used as
+placeholder imagery site-wide (home hero, page-hero backgrounds, Work grid
+thumbnails, LFTLR) so the site doesn't look empty before real photos/video
+arrive. Every image there is displayed through the `.brand-photo` /
+`.brand-photo-frame` CSS treatment (`style.css`) — a grayscale + red-duotone
+filter applied uniformly, so unrelated stock photos still read as one
+cohesive brand system instead of random imagery. `/assets/images/stock/CREDITS.md`
+documents source/author/license for each (two are CC BY / CC BY-SA, which
+legally require the attribution kept there).
+
+**When real photos/video arrive**: replace the stock image paths in
+`data/work.json` and the page-hero `<img class="page-hero-media">` tags,
+delete the corresponding rows from `CREDITS.md` and files from
+`assets/images/stock/`, and decide whether `.brand-photo`'s forced
+grayscale+red treatment should still apply — the brand guide's photography
+direction (color vs. B&W, framing, lighting mood) is explicitly undefined,
+so don't assume the stock-photo treatment is the final answer once real
+photography direction is chosen.
+
+Two placeholder slots were deliberately left without a stock photo: Airik's
+team portrait (`data/team.json`) and LFTLR's "Featured Artists" cards — both
+represent specific real, named people, and a stranger's stock photo there
+would misrepresent who they are rather than just decorate empty space.
+
 ## Known blockers / open items (check if still true before assuming)
 
 - **Portfolio media**: no real photos/videos yet. `/data/work.json` has 6 placeholder
-  entries and `/work/template.html` is unfilled. Waiting on a WeTransfer zip from
-  Airik. Once it arrives, replace placeholders with real projects and images.
+  entries (now shown with stock photography, see above) and `/work/template.html`
+  is unfilled. Waiting on a WeTransfer zip from Airik. Once it arrives, replace
+  placeholders with real projects and images.
 - **Team**: only the founder is populated in `/data/team.json`. No other team member
   bios/photos received yet.
 - **LFTLR**: `/data/lftlr.json` and `/lftlr.html` need the URL of the existing Live

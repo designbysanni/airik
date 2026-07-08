@@ -154,10 +154,27 @@ p { margin: 0 0 var(--space-2); color: var(--aaec-silver); max-width: 60ch; }
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; opacity: 0.55;
 }
-.hero::after {
+.hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, #000 5%, transparent 60%);
+}
+
+/* Brand photo treatment ----------------------------------------------------
+   Source photography (stock, until real AAEC work replaces it) is never
+   naturally black/red/white/silver, so instead of hunting for photos that
+   happen to match, every photo gets the same grayscale + red-duotone
+   treatment. Guarantees the whole site reads as one system regardless of
+   what's underneath. Apply .brand-photo to the <img>/background element and
+   wrap it in .brand-photo-frame if it needs the red overlay (::after). */
+.brand-photo { filter: grayscale(1) contrast(1.15) brightness(0.85); }
+.brand-photo-frame { position: relative; }
+.brand-photo-frame::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(to top, #000 5%, transparent 60%);
+  background: linear-gradient(160deg, rgba(176,21,27,0.35), rgba(0,0,0,0.55) 65%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 .hero .container { position: relative; z-index: 2; }
 .hero p.lede { color: var(--aaec-white); font-size: 1.15rem; max-width: 42ch; }
@@ -251,7 +268,13 @@ textarea { min-height: 140px; resize: vertical; }
 .mt-0 { margin-top: 0; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .tag { border: 1px solid var(--aaec-line); padding: 0.3rem 0.75rem; font-family: var(--font-structural); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--aaec-silver); }
-.page-hero { padding: calc(var(--space-6) + 3rem) 0 var(--space-5); border-top: none; }
+.page-hero { position: relative; overflow: hidden; padding: calc(var(--space-6) + 3rem) 0 var(--space-5); border-top: none; }
+.page-hero .container { position: relative; z-index: 2; }
+.page-hero-media {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.32; z-index: 0;
+}
+.page-hero.brand-photo-frame::after { z-index: 1; }
 .stat { font-family: var(--font-display); font-size: 3rem; color: var(--aaec-red); }
 
 /* Testimonials ------------------------------------------------------------*/

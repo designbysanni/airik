@@ -2,49 +2,49 @@
   {
     "title": "Sample Project One",
     "category": "Commercial",
-    "image": "",
+    "image": "/assets/images/stock/work-commercial-clapperboard.jpg",
     "href": "/work/template.html",
     "featured": true,
-    "note": "PLACEHOLDER — replace with a real project once the portfolio zip is in. Duplicate /work/template.html per project."
+    "note": "PLACEHOLDER — replace with a real project once the portfolio zip is in. Duplicate /work/template.html per project. image is a royalty-free stock photo standing in for real work, see /assets/images/stock/CREDITS.md."
   },
   {
     "title": "Sample Project Two",
     "category": "Music & Culture",
-    "image": "",
+    "image": "/assets/images/stock/work-music-culture-concert.jpg",
     "href": "/work/template.html",
     "featured": true,
-    "note": "PLACEHOLDER"
+    "note": "PLACEHOLDER — stock photo, see /assets/images/stock/CREDITS.md."
   },
   {
     "title": "Sample Project Three",
     "category": "Sports",
-    "image": "",
+    "image": "/assets/images/stock/work-sports-basketball.jpg",
     "href": "/work/template.html",
     "featured": true,
-    "note": "PLACEHOLDER"
+    "note": "PLACEHOLDER — stock photo, see /assets/images/stock/CREDITS.md."
   },
   {
     "title": "Sample Project Four",
     "category": "Documentary",
-    "image": "",
+    "image": "/assets/images/stock/work-documentary-bw.jpg",
     "href": "/work/template.html",
     "featured": false,
-    "note": "PLACEHOLDER"
+    "note": "PLACEHOLDER — stock photo, see /assets/images/stock/CREDITS.md."
   },
   {
     "title": "Sample Project Five",
     "category": "Community",
-    "image": "",
+    "image": "/assets/images/stock/work-community-mural-chicago.jpg",
     "href": "/work/template.html",
     "featured": false,
-    "note": "PLACEHOLDER"
+    "note": "PLACEHOLDER — stock photo, see /assets/images/stock/CREDITS.md."
   },
   {
     "title": "Sample Project Six",
     "category": "Events",
-    "image": "",
+    "image": "/assets/images/stock/work-events-theater.jpg",
     "href": "/work/template.html",
     "featured": false,
-    "note": "PLACEHOLDER — \"featured\": true on the first 3 items just controls what shows in the Home page's \"Featured Work\" section (see [data-featured-only] in index.html). The Work page always shows all items regardless of this flag. Set/unset freely once real projects replace these placeholders."
+    "note": "PLACEHOLDER — \"featured\": true on the first 3 items just controls what shows in the Home page's \"Featured Work\" section (see [data-featured-only] in index.html). The Work page always shows all items regardless of this flag. Set/unset freely once real projects replace these placeholders. image is a royalty-free stock photo, see /assets/images/stock/CREDITS.md."
   }
 ]
