@@ -2,10 +2,10 @@
   {
     "name": "Airik Crawford",
     "role": "Founder & Creative Director",
-    "photo": "",
+    "photo": "/assets/images/stock/about-airik-silhouette.jpg",
     "bio": "Eric Boyd Crawford Jr., professionally known as Airik Crawford, founded AAEC in March 2022. Raised on the West Side of Chicago, he approaches visual storytelling as an artist first, with a background in painting, design, composition, and creative theory from Knox College.",
     "expertise": ["Creative Direction", "Cinematography", "Photography", "Brand Strategy"],
     "relatedWork": [],
-    "note": "PLACEHOLDER — relatedWork is an optional array of {\"title\": ..., \"href\": ...} pairs pointing at /work/<slug>.html pages; the About page modal renders a \"Related Work\" list automatically once this is populated. Leave empty until real portfolio projects exist. photo is empty pending a real portrait; rest of the team (if any) needs bios/photos from Airik."
+    "note": "PLACEHOLDER — photo is a royalty-free silhouette (no identifiable face), NOT a real photo of Airik — deliberately chosen so the placeholder can't be mistaken for his actual likeness. Swap for his real portrait per assets/images/stock/CREDITS.md the moment it's received; do not leave the silhouette in place for a real launch. relatedWork is an optional array of {\"title\": ..., \"href\": ...} pairs pointing at /work/<slug>.html pages; the About page modal renders a \"Related Work\" list automatically once this is populated. Leave empty until real portfolio projects exist. Rest of the team (if any) needs bios/photos from Airik."
   }
 ]

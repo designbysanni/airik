@@ -26,6 +26,21 @@ adjust or remove that treatment once real photography direction is decided.
 | `work-community-mural-chicago.jpg` | [Artist Ron Blackburn painting an outdoor wall mural, Chicago (NARA)](https://commons.wikimedia.org/wiki/File:ARTIST_RON_BLACKBURN_PAINTING_AN_OUTDOOR_WALL_MURAL_AT_THE_CORNER_OF_33RD_AND_GILES_STREETS_IN_CHICAGO._HE_IS_ONE_OF..._-_NARA_-_556229.jpg) | John H. White / US National Archives (NARA) | Public domain — no attribution legally required |
 | `work-events-theater.jpg` | [Theater Show](https://commons.wikimedia.org/wiki/File:Theater_Show.jpg) | Kurt Kaiser | [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) — no attribution legally required |
 | `lftlr-vinyl-turntable.jpg` | [Groove and needle in close embrace from beginning to end](https://commons.wikimedia.org/wiki/File:Groove_and_needle_in_close_embrace_from_beginning_to_end.jpg) | Franz van Duns | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) |
+| `about-airik-silhouette.jpg` | [Anak Mah Theater — Improvisational theatre, Qom, Iran, 2013](https://commons.wikimedia.org/wiki/File:Anak_Mah_Theater-Improvisational_theatre-Qom-Iran-2013-Photography_Mostafa_Meraji_04.jpg) | Mostafa Meraji | [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) — no attribution legally required |
+| `lftlr-artist-1-band.jpg` | [Silhouettes on a dark stage (Unsplash)](https://commons.wikimedia.org/wiki/File:Silhouettes_on_a_dark_stage_(Unsplash).jpg) | Marc-Antoine Dépelteau | [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) — no attribution legally required |
+| `lftlr-artist-2-crowd.jpg` | [Silhouettes against pale stage smoke (Unsplash)](https://commons.wikimedia.org/wiki/File:Silhouettes_against_pale_stage_smoke_(Unsplash).jpg) | Daniel Ebersole | [CC0](http://creativecommons.org/publicdomain/zero/1.0/deed.en) — no attribution legally required |
+
+## On the two "real person" slots
+
+`about-airik-silhouette.jpg` fills Airik Crawford's team portrait slot
+(`data/team.json` + the About page Founder section) and the LFTLR "Featured
+Artists" cards use two more silhouette shots — all three chosen specifically
+because **no face is identifiable** in any of them. These slots represent
+specific real, named people; a stock photo of a stranger's clearly visible
+face there would misrepresent who they are, not just decorate empty space.
+A silhouette reads as "portrait pending" rather than "this is a photo of
+[name]." Swap all three for real photos the moment they're available — don't
+carry the silhouettes into an actual launch.
 
 ## Not used (flagged during sourcing, worth knowing about)
 
@@ -34,11 +49,6 @@ adjust or remove that treatment once real photography direction is decided.
   being taped mid-crowd, not action photography — swapped for the dunk photo
   above. Always visually check a stock photo before using it; the title/
   category metadata alone isn't reliable.
-- Deliberately did **not** put a stock photo in Airik Crawford's team
-  portrait slot (`data/team.json`) or in the LFTLR "Featured Artists" cards —
-  those slots represent specific real, named people, and a stranger's stock
-  photo there would misrepresent who they are, not just decorate an empty
-  space. Left as the existing "portrait/artist pending" placeholder instead.
 - No hero **video** — none of Commons' free-licensed video clips fit the
   brand (mostly historical/archival `.ogv` footage with poor Safari support).
   Home hero uses the Chicago skyline image instead. A real cinematic hero
