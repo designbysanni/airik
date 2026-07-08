@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIRIK ART & ENTERTAINMENT CO. — Art. Culture. Legacy.</title>
 <meta name="description" content="AIRIK ART & ENTERTAINMENT CO. is a Chicago-based creative house creating cinematic film, photography, and brand experiences.">
+<link rel="icon" type="image/png" href="/assets/images/brand/aquinas-symbol-black.png">
+<meta property="og:title" content="AIRIK ART & ENTERTAINMENT CO. — Art. Culture. Legacy.">
+<meta property="og:description" content="A Chicago-based creative house creating cinematic film, photography, and brand experiences.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://airikart.com/">
+<meta property="og:image" content="https://airikart.com/assets/images/brand/airik-wordmark-black.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
@@ -13,6 +20,9 @@
 <header class="site-header" data-include-header></header>
 
 <main>
+  <!-- Brief calls for a hero video; none received yet. Gradient placeholder
+       below stands in until Airik's portfolio/hero footage arrives — swap for
+       a <video> element (see .hero video in style.css) once it does. -->
   <section class="hero">
     <div class="container">
       <span class="eyebrow">Chicago, Illinois — Est. 2022</span>
@@ -43,7 +53,7 @@
         </div>
         <a href="/work.html" class="btn">View All Work</a>
       </div>
-      <div class="grid grid-3" data-work-grid>
+      <div class="grid grid-3" data-work-grid data-featured-only>
         <p>Loading work…</p>
       </div>
     </div>
@@ -79,16 +89,8 @@
           <h2>Selected Clients</h2>
         </div>
       </div>
-      <div class="tag-list reveal">
-        <span class="tag">NBA</span>
-        <span class="tag">NFL</span>
-        <span class="tag">Nike</span>
-        <span class="tag">Under Armour</span>
-        <span class="tag">PlayStation</span>
-        <span class="tag">Universal Music Group</span>
-        <span class="tag">Atlantic Records</span>
-        <span class="tag">City of Chicago</span>
-        <span class="tag">Sankofa Village Wellness Center</span>
+      <div class="tag-list reveal" data-clients-list>
+        <p>Loading clients…</p>
       </div>
     </div>
   </section>
@@ -106,9 +108,16 @@
   </section>
 
   <section>
-    <div class="container reveal">
-      <span class="eyebrow">Testimonials</span>
-      <h2>PLACEHOLDER — real client testimonials pending.</h2>
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Testimonials</span>
+          <h2>What clients say</h2>
+        </div>
+      </div>
+      <div class="grid grid-2 reveal" data-testimonials>
+        <p>Loading testimonials…</p>
+      </div>
     </div>
   </section>
 

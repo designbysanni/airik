@@ -1,6 +1,8 @@
 {
   "existingSiteUrl": "",
-  "note": "PLACEHOLDER — add the URL of the existing Live From The Living Room site once Airik provides it.",
+  "note": "PLACEHOLDER — add the URL of the existing Live From The Living Room site once Airik provides it. Unlike work.json/team.json, lftlr.html does not currently fetch this file — the page is hand-written static placeholder HTML since there's no real content yet. Once featuredArtists/episodes/gallery/timeline are populated here, either wire lftlr.html to fetch and render them (matching the work.json/team.json pattern), or hand-edit the HTML directly if the content is small and mostly static.",
   "featuredArtists": [],
-  "episodes": []
+  "episodes": [],
+  "gallery": [],
+  "timeline": []
 }

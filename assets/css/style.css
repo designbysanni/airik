@@ -14,6 +14,11 @@
   --aaec-silver: #A6A6A6;
   --aaec-black-soft: #0a0a0a;
   --aaec-line: rgba(255, 255, 255, 0.12);
+  /* Brand red (#B0151B) on black only hits ~3:1 contrast, which fails WCAG AA
+     for small text (needs 4.5:1). Used for small text on black (eyebrows, nav/
+     footer hover) instead of --aaec-red, which stays reserved for fills/borders
+     where the text sitting on it is white (already >7:1, no issue there). */
+  --aaec-red-text: #E63946;
 
   --font-display: "Bebas Neue", "Anton", sans-serif;
   --font-structural: "Jost", "Futura", sans-serif;
@@ -73,7 +78,7 @@ p { margin: 0 0 var(--space-2); color: var(--aaec-silver); max-width: 60ch; }
   text-transform: uppercase;
   letter-spacing: 0.25em;
   font-size: 0.75rem;
-  color: var(--aaec-red);
+  color: var(--aaec-red-text);
   margin-bottom: var(--space-2);
   display: inline-block;
 }
@@ -123,7 +128,7 @@ p { margin: 0 0 var(--space-2); color: var(--aaec-silver); max-width: 60ch; }
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
-.main-nav a:hover, .main-nav a.active { color: var(--aaec-red); border-color: var(--aaec-red); }
+.main-nav a:hover, .main-nav a.active { color: var(--aaec-red-text); border-color: var(--aaec-red-text); }
 
 .nav-toggle { display: none; background: none; border: 0; color: var(--aaec-white); font-size: 1.6rem; cursor: pointer; }
 
@@ -228,9 +233,9 @@ input, select, textarea {
   width: 100%; background: var(--aaec-black-soft); border: 1px solid var(--aaec-line); color: var(--aaec-white);
   padding: 0.8rem; font-family: var(--font-body); font-size: 0.95rem;
 }
-input:focus, select:focus, textarea:focus { outline: none; border-color: var(--aaec-red); }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--aaec-red-text); }
 textarea { min-height: 140px; resize: vertical; }
-.form-status { font-family: var(--font-structural); font-size: 0.85rem; letter-spacing: 0.05em; }
+.form-status { font-family: var(--font-structural); font-size: 0.85rem; letter-spacing: 0.05em; min-height: 1.2em; }
 
 /* Footer ------------------------------------------------------------------*/
 .site-footer { padding: var(--space-5) 0 var(--space-3); border-top: 1px solid var(--aaec-line); }
@@ -238,7 +243,7 @@ textarea { min-height: 140px; resize: vertical; }
 .footer-col h4 { font-size: 0.9rem; color: var(--aaec-white); }
 .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
 .footer-col a { color: var(--aaec-silver); font-size: 0.9rem; }
-.footer-col a:hover { color: var(--aaec-red); }
+.footer-col a:hover { color: var(--aaec-red-text); }
 .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2); font-size: 0.8rem; color: var(--aaec-silver); border-top: 1px solid var(--aaec-line); padding-top: var(--space-2); }
 
 /* Utility ------------------------------------------------------------------*/
@@ -248,3 +253,19 @@ textarea { min-height: 140px; resize: vertical; }
 .tag { border: 1px solid var(--aaec-line); padding: 0.3rem 0.75rem; font-family: var(--font-structural); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--aaec-silver); }
 .page-hero { padding: calc(var(--space-6) + 3rem) 0 var(--space-5); border-top: none; }
 .stat { font-family: var(--font-display); font-size: 3rem; color: var(--aaec-red); }
+
+/* Testimonials ------------------------------------------------------------*/
+blockquote.card { margin: 0; display: grid; gap: var(--space-1); }
+
+/* Keyboard focus ------------------------------------------------------------
+   Mouse clicks don't show this ring (default :focus-visible behavior); tab
+   navigation does. Declared after the form/nav rules above so it wins the
+   cascade and isn't cancelled by their `outline: none`. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--aaec-white);
+  outline-offset: 3px;
+}

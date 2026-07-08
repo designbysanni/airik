@@ -76,6 +76,6 @@ Contact and Careers forms are placeholders right now (see `CLAUDE.md` → "GHL
 integration"). When the GHL sub-account forms are ready, paste GHL's public
 form/calendar embed snippet into `contact.html` / `careers.html` in place of the
 current `<form data-inquiry-form>` block, and remove the corresponding placeholder
-logic in `initContactForm()` in `assets/js/main.js` if GHL's own embed handles
+logic in `initInquiryForms()` in `assets/js/main.js` if GHL's own embed handles
 submission. Never put a GHL Private Integration Token (`pit-...`) into any file in
 this repo, see `CLAUDE.md` for why.

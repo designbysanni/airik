@@ -4,6 +4,7 @@
     "category": "Commercial",
     "image": "",
     "href": "/work/template.html",
+    "featured": true,
     "note": "PLACEHOLDER — replace with a real project once the portfolio zip is in. Duplicate /work/template.html per project."
   },
   {
@@ -11,6 +12,7 @@
     "category": "Music & Culture",
     "image": "",
     "href": "/work/template.html",
+    "featured": true,
     "note": "PLACEHOLDER"
   },
   {
@@ -18,6 +20,7 @@
     "category": "Sports",
     "image": "",
     "href": "/work/template.html",
+    "featured": true,
     "note": "PLACEHOLDER"
   },
   {
@@ -25,6 +28,7 @@
     "category": "Documentary",
     "image": "",
     "href": "/work/template.html",
+    "featured": false,
     "note": "PLACEHOLDER"
   },
   {
@@ -32,6 +36,7 @@
     "category": "Community",
     "image": "",
     "href": "/work/template.html",
+    "featured": false,
     "note": "PLACEHOLDER"
   },
   {
@@ -39,6 +44,7 @@
     "category": "Events",
     "image": "",
     "href": "/work/template.html",
-    "note": "PLACEHOLDER"
+    "featured": false,
+    "note": "PLACEHOLDER — \"featured\": true on the first 3 items just controls what shows in the Home page's \"Featured Work\" section (see [data-featured-only] in index.html). The Work page always shows all items regardless of this flag. Set/unset freely once real projects replace these placeholders."
   }
 ]

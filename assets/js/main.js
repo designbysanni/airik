@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal();
   initWorkFilters();
   initTeamModal();
-  initContactForm();
+  initClientsList();
+  initTestimonials();
+  initInquiryForms();
 });
 
 /* Shared header/footer, injected so nav/footer only need editing once ---- */
@@ -48,12 +50,14 @@ function initMobileNav() {
   if (!toggle || !nav) return;
   toggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
     toggle.textContent = isOpen ? "✕" : "☰";
     document.body.style.overflow = isOpen ? "hidden" : "";
   });
   nav.querySelectorAll("a").forEach((link) =>
     link.addEventListener("click", () => {
       nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
       toggle.textContent = "☰";
       document.body.style.overflow = "";
     })
@@ -78,15 +82,21 @@ function initReveal() {
   targets.forEach((t) => io.observe(t));
 }
 
-/* Work page: load /data/work.json, render cards, filter by category ------ */
+/* Work page + Home "Featured Work": load /data/work.json, render cards,
+   filter by category. Home only shows items flagged "featured": true
+   (marked via [data-featured-only] on the grid element); Work page shows
+   everything and wires up the category filter bar. ------------------------ */
 function initWorkFilters() {
   const grid = document.querySelector("[data-work-grid]");
   if (!grid) return;
+  const featuredOnly = grid.hasAttribute("data-featured-only");
 
   fetch("/data/work.json")
     .then((res) => res.json())
     .then((items) => {
-      renderWorkGrid(grid, items);
+      const initial = featuredOnly ? items.filter((i) => i.featured) : items;
+      renderWorkGrid(grid, initial);
+
       const filterBar = document.querySelector("[data-filter-bar]");
       if (!filterBar) return;
       filterBar.addEventListener("click", (e) => {
@@ -100,19 +110,19 @@ function initWorkFilters() {
       });
     })
     .catch(() => {
-      grid.innerHTML = '<p>Portfolio data could not be loaded.</p>';
+      grid.innerHTML = "<p>Portfolio data could not be loaded.</p>";
     });
 }
 
 function renderWorkGrid(grid, items) {
   if (!items.length) {
-    grid.innerHTML = '<p>No projects in this category yet.</p>';
+    grid.innerHTML = "<p>No projects in this category yet.</p>";
     return;
   }
   grid.innerHTML = items
     .map(
       (item) => `
-      <a class="media-card reveal is-visible" href="${item.href || '/work/template.html'}">
+      <a class="media-card reveal is-visible" href="${item.href || "/work/template.html"}">
         ${item.image ? `<img src="${item.image}" alt="${item.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Image pending<br>${item.title}</div>`}
         <div class="caption">
           <span class="eyebrow">${item.category}</span>
@@ -123,7 +133,8 @@ function renderWorkGrid(grid, items) {
     .join("");
 }
 
-/* About page: load /data/team.json, render team grid + modal ------------- */
+/* About page: load /data/team.json, render team grid + clickable modal
+   with portrait, bio, role, expertise, and related work (per brief). ------ */
 function initTeamModal() {
   const grid = document.querySelector("[data-team-grid]");
   const overlay = document.querySelector("[data-team-modal]");
@@ -135,9 +146,9 @@ function initTeamModal() {
       grid.innerHTML = members
         .map(
           (m, i) => `
-        <button class="team-member reveal is-visible" data-index="${i}">
+        <button class="team-member reveal is-visible" type="button" data-index="${i}">
           <div class="media-card">
-            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
+            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
           </div>
           <h4>${m.name}</h4>
           <span class="role">${m.role}</span>
@@ -145,9 +156,99 @@ function initTeamModal() {
         )
         .join("");
 
+      const closeModal = () => {
+        overlay.classList.remove("is-open");
+        document.body.style.overflow = "";
+      };
+
+      const openModal = (m) => {
+        const expertise = (m.expertise || []).map((e) => `<span class="tag">${e}</span>`).join("");
+        const relatedWork = (m.relatedWork || []).length
+          ? `<h4 style="margin-top:1.5rem;">Related Work</h4>
+             <ul style="list-style:none;padding:0;margin:0;display:grid;gap:0.4rem;">
+               ${m.relatedWork.map((w) => `<li><a href="${w.href}" style="color:var(--aaec-silver);">${w.title} →</a></li>`).join("")}
+             </ul>`
+          : "";
+        overlay.querySelector("[data-modal-body]").innerHTML = `
+          <div class="media-card" style="aspect-ratio:1/1;max-width:220px;margin-bottom:1.5rem;">
+            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
+          </div>
+          <h3>${m.name}</h3>
+          <span class="role">${m.role}</span>
+          <p style="margin-top:1rem;">${m.bio}</p>
+          ${expertise ? `<div class="tag-list" style="margin-top:1rem;">${expertise}</div>` : ""}
+          ${relatedWork}
+        `;
+        overlay.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      };
+
       grid.querySelectorAll(".team-member").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const m = members[btn.dataset.index];
-          overlay.querySelector("[data-modal-body]").innerHTML = `
-            <h3>${m.name}</h3>
-            <span class="role">${m
+        btn.addEventListener("click", () => openModal(members[btn.dataset.index]));
+      });
+
+      overlay.querySelector(".modal-close").addEventListener("click", closeModal);
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    })
+    .catch(() => {
+      grid.innerHTML = "<p>Team data could not be loaded.</p>";
+    });
+}
+
+/* Home page "Selected Clients": load /data/clients.json ------------------- */
+function initClientsList() {
+  const el = document.querySelector("[data-clients-list]");
+  if (!el) return;
+  fetch("/data/clients.json")
+    .then((res) => res.json())
+    .then((clients) => {
+      el.innerHTML = clients.map((c) => `<span class="tag">${c.name}</span>`).join("");
+    })
+    .catch(() => {
+      el.innerHTML = "<p>Client list could not be loaded.</p>";
+    });
+}
+
+/* Home page "Testimonials": load /data/testimonials.json ------------------ */
+function initTestimonials() {
+  const el = document.querySelector("[data-testimonials]");
+  if (!el) return;
+  fetch("/data/testimonials.json")
+    .then((res) => res.json())
+    .then((items) => {
+      el.innerHTML = items
+        .map(
+          (t) => `
+        <blockquote class="card">
+          <p style="color:var(--aaec-white);font-size:1.1rem;">&ldquo;${t.quote}&rdquo;</p>
+          <p style="color:var(--aaec-silver);margin:0;font-family:var(--font-structural);text-transform:uppercase;font-size:0.75rem;letter-spacing:0.08em;">${t.name}${t.org ? `, ${t.org}` : ""}</p>
+        </blockquote>`
+        )
+        .join("");
+    })
+    .catch(() => {
+      el.innerHTML = "<p>Testimonials could not be loaded.</p>";
+    });
+}
+
+/* Contact + Careers forms: GHL isn't wired up yet, so submissions can't
+   actually go anywhere. Intercept submit and show a clear status message
+   instead of silently failing or pretending to send. Once GHL form embeds
+   are ready, replace the <form data-inquiry-form> blocks per README. ----- */
+function initInquiryForms() {
+  document.querySelectorAll("[data-inquiry-form]").forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const status = form.querySelector(".form-status");
+      if (!status) return;
+      status.textContent =
+        "This form isn't connected yet — please email info@airikart.com directly and we'll follow up. (Online submissions go live once the CRM is fully set up.)";
+      status.style.color = "var(--aaec-red-text)";
+    });
+  });
+}
