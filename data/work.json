@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Sample Project One",
+    "category": "Commercial",
+    "image": "",
+    "href": "/work/template.html",
+    "note": "PLACEHOLDER — replace with a real project once the portfolio zip is in. Duplicate /work/template.html per project."
+  },
+  {
+    "title": "Sample Project Two",
+    "category": "Music & Culture",
+    "image": "",
+    "href": "/work/template.html",
+    "note": "PLACEHOLDER"
+  },
+  {
+    "title": "Sample Project Three",
+    "category": "Sports",
+    "image": "",
+    "href": "/work/template.html",
+    "note": "PLACEHOLDER"
+  },
+  {
+    "title": "Sample Project Four",
+    "category": "Documentary",
+    "image": "",
+    "href": "/work/template.html",
+    "note": "PLACEHOLDER"
+  },
+  {
+    "title": "Sample Project Five",
+    "category": "Community",
+    "image": "",
+    "href": "/work/template.html",
+    "note": "PLACEHOLDER"
+  },
+  {
+    "title": "Sample Project Six",
+    "category": "Events",
+    "image": "",
+    "href": "/work/template.html",
+    "note": "PLACEHOLDER"
+  }
+]

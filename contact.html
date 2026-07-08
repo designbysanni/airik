@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — AIRIK ART & ENTERTAINMENT CO.</title>
+<meta name="description" content="Start a project with AAEC. Project inquiries, business email, and social links.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<header class="site-header" data-include-header></header>
+
+<main>
+  <section class="page-hero">
+    <div class="container reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h1>Start a Project</h1>
+      <p class="lede">Tell us about the story you want told.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="reveal">
+          <!-- TODO: wire this to GoHighLevel (embed the GHL form/calendar widget here,
+               or point the form action at the GHL form endpoint). See CLAUDE.md
+               "GHL integration" for the security note on the private integration token. -->
+          <form data-inquiry-form>
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+            <div>
+              <label for="project-type">Project Type</label>
+              <select id="project-type" name="project-type">
+                <option>Commercial</option>
+                <option>Sports</option>
+                <option>Community</option>
+                <option>Music & Culture</option>
+                <option>Photography</option>
+                <option>Documentary</option>
+                <option>Events</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="budget">Budget Range</label>
+              <input id="budget" name="budget" type="text" placeholder="e.g. $5,000–$10,000">
+            </div>
+            <div>
+              <label for="message">Project Details</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Inquiry</button>
+            <p class="form-status"></p>
+          </form>
+        </div>
+        <div class="reveal">
+          <h3>Business Info</h3>
+          <p><a href="mailto:info@airikart.com">info@airikart.com</a></p>
+          <h3 style="margin-top:2rem;">Social</h3>
+          <div class="tag-list">
+            <a class="tag" href="https://www.instagram.com/airikentertainment.co/" target="_blank" rel="noopener">Instagram</a>
+            <a class="tag" href="https://www.facebook.com/AirikEntertainment/" target="_blank" rel="noopener">Facebook</a>
+            <a class="tag" href="https://www.linkedin.com/company/airikent/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-include-footer></footer>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

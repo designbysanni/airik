@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — AIRIK ART & ENTERTAINMENT CO.</title>
+<meta name="description" content="Current openings, freelance opportunities, and internships at AAEC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<header class="site-header" data-include-header></header>
+
+<main>
+  <section class="page-hero">
+    <div class="container reveal">
+      <span class="eyebrow">Join AAEC</span>
+      <h1>Careers</h1>
+      <p class="lede">Openings, freelance opportunities, and internships.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container reveal">
+      <h3>Current Openings</h3>
+      <p>No open positions listed at this time. Submit general interest below and we'll reach out when something fits.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="grid grid-2 reveal">
+        <div class="card">
+          <h4>Freelance</h4>
+          <p>We work with freelance shooters, editors, and production crew on a project basis.</p>
+        </div>
+        <div class="card">
+          <h4>Internships</h4>
+          <p>Hands-on internships across production, editing, and creative direction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container reveal">
+      <h3>General Application</h3>
+      <!-- TODO: wire this to GHL (form embed or action URL) once the GHL pipeline is set up. See CLAUDE.md. -->
+      <form data-inquiry-form>
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required>
+        </div>
+        <div>
+          <label for="area">Area of Interest</label>
+          <select id="area" name="area">
+            <option>Production</option>
+            <option>Photography</option>
+            <option>Editing</option>
+            <option>Creative Direction</option>
+            <option>Internship</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Tell us about yourself</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Application</button>
+        <p class="form-status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-include-footer></footer>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

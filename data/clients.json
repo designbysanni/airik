@@ -1,0 +1,14 @@
+[
+  { "name": "NBA", "category": "Sports" },
+  { "name": "NFL", "category": "Sports" },
+  { "name": "NCAA", "category": "Sports" },
+  { "name": "Nike", "category": "Corporate" },
+  { "name": "Under Armour", "category": "Corporate" },
+  { "name": "PlayStation", "category": "Corporate" },
+  { "name": "Universal Music Group", "category": "Music & Entertainment" },
+  { "name": "Atlantic Records", "category": "Music & Entertainment" },
+  { "name": "City of Chicago", "category": "Government & Education" },
+  { "name": "Sankofa Village Wellness Center", "category": "Community & Nonprofit" },
+  { "name": "Everybody Eats", "category": "Community & Nonprofit" },
+  { "name": "Dream Academy Foundation", "category": "Community & Nonprofit" }
+]
