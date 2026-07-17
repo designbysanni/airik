@@ -50,15 +50,22 @@ static server for preview (see README).
 
 - `/data/work.json` — array of portfolio items: `title`, `category` (must be one of
   Commercial, Sports, Community, Music & Culture, Photography, Documentary, Events —
-  these match the filter buttons on `/work.html`), `image` (path or empty string for
-  placeholder), `href` (link to the project's detail page), `featured` (boolean —
-  Home's "Featured Work" grid only shows items with `featured: true`, capped by
-  whatever's flagged; `/work.html` always shows everything and ignores this flag).
+  these match the filter buttons on `/work.html`), `image` (path to the project's
+  hero/thumbnail image), `href` (link to the project's detail page), `featured`
+  (boolean — Home's "Featured Work" grid only shows items with `featured: true`;
+  `/work.html` always shows everything and ignores this flag). Currently 14 real
+  projects built from Airik's PHOTOGRAPHY export — see
+  `assets/images/work/CREDITS.md` for what's real vs. still a gap.
 - `/work/template.html` — the pattern for an individual project detail page. To add a
   real project: duplicate this file as `/work/<slug>.html`, fill in the real content,
   then add a matching entry to `/data/work.json` pointing `href` at the new file. Do
   not try to generate detail pages dynamically from JSON alone — they should be real,
-  crawlable static HTML for SEO.
+  crawlable static HTML for SEO. Video is NOT part of `work.json` — YouTube embeds
+  are hand-authored directly into the relevant project page(s) using `.video-embed`
+  (see `style.css`; a responsive 16:9 `<iframe>` wrapper). One video → single
+  `.video-embed` in its own section; multiple videos on one project (see
+  `/work/sports.html`) → a `.grid.grid-2` of `.video-embed` blocks with a caption
+  under each. `src="https://www.youtube.com/embed/<id>?rel=0"`.
 - `/data/team.json` — array of team members: `name`, `role`, `photo`, `bio`,
   `expertise` (array of strings), `relatedWork` (optional array of
   `{"title": ..., "href": ...}` pointing at `/work/<slug>.html` pages — the About
@@ -114,42 +121,55 @@ centerline when placed, not the file's bounding box edges (per brand guide produ
 note) — the current usage (footer, roughly centered) is a safe default, but be careful
 if repositioning it.
 
-## Stock photography (temporary, until real AAEC media arrives)
+## Photography: real vs. stock
 
-`/assets/images/stock/` holds royalty-free Wikimedia Commons photos used as
-placeholder imagery site-wide (home hero, page-hero backgrounds, Work grid
-thumbnails, LFTLR) so the site doesn't look empty before real photos/video
-arrive. Every image there is displayed through the `.brand-photo` /
-`.brand-photo-frame` CSS treatment (`style.css`) — a grayscale + red-duotone
-filter applied uniformly, so unrelated stock photos still read as one
-cohesive brand system instead of random imagery. `/assets/images/stock/CREDITS.md`
-documents source/author/license for each (two are CC BY / CC BY-SA, which
-legally require the attribution kept there).
+Most of the site now runs on **real AAEC photography** from Airik's own
+PHOTOGRAPHY export, not stock. `/assets/images/work/<slug>/0N.jpg` holds the
+selected images per project (see `assets/images/work/CREDITS.md` for
+sourcing/selection details and known gaps), and `/assets/images/work/lftlr/`
+holds real Live From The Living Room photos used on `/lftlr.html`.
 
-**When real photos/video arrive**: replace the stock image paths in
-`data/work.json` and the page-hero `<img class="page-hero-media">` tags,
-delete the corresponding rows from `CREDITS.md` and files from
-`assets/images/stock/`, and decide whether `.brand-photo`'s forced
-grayscale+red treatment should still apply — the brand guide's photography
-direction (color vs. B&W, framing, lighting mood) is explicitly undefined,
-so don't assume the stock-photo treatment is the final answer once real
-photography direction is chosen.
+Real photography does **not** get the grayscale/red-duotone treatment —
+`.brand-photo` is reserved for the two remaining stock images (see below).
+Showing the client's actual work in its true color/quality is the point;
+don't apply that filter to new real photos without a specific reason.
 
-Two placeholder slots were deliberately left without a stock photo: Airik's
-team portrait (`data/team.json`) and LFTLR's "Featured Artists" cards — both
-represent specific real, named people, and a stranger's stock photo there
-would misrepresent who they are rather than just decorate empty space.
+Two stock images remain, deliberately, in `/assets/images/stock/` (see
+`assets/images/stock/CREDITS.md`):
+- `chicago-skyline-night.jpg` — Home/About/Contact hero backgrounds. Kept
+  because it's meaningfully tied to AAEC's real Chicago origin story, not
+  filler; swap for a real Chicago shot of Airik's own if he ever takes one,
+  otherwise leave it.
+- `about-airik-silhouette.jpg` — Airik's team portrait slot (`data/team.json`
+  + About page Founder section). A backlit, no-identifiable-face placeholder
+  used *because* no photo should claim to be him except an actual photo of
+  him. Replace only with a real photo of Airik Crawford, never with another
+  stock image — if you don't have one, leave this silhouette in place rather
+  than substituting a different stranger's photo.
+
+If Airik sends more/better photos later (especially for `US CELLULAR`, which
+only had one usable real image after filtering out screenshots — see
+`assets/images/work/CREDITS.md`), swap files directly in
+`assets/images/work/<slug>/` — the HTML/JSON reference positional filenames
+(`01.jpg`, `02.jpg`, ...), not specific content, so dropping in a replacement
+with the same filename just works.
 
 ## Known blockers / open items (check if still true before assuming)
 
-- **Portfolio media**: no real photos/videos yet. `/data/work.json` has 6 placeholder
-  entries (now shown with stock photography, see above) and `/work/template.html`
-  is unfilled. Waiting on a WeTransfer zip from Airik. Once it arrives, replace
-  placeholders with real projects and images.
+- **Portfolio media**: RESOLVED as of the PHOTOGRAPHY export — `/data/work.json`
+  has 14 real projects with real photos and, where applicable, real embedded
+  YouTube video. Remaining gap: none of these projects have real client-approved
+  "Brief"/"Approach" copy — the current text on each `/work/<slug>.html` is
+  written by Claude based on the category/title, not provided by Airik. Confirm
+  or replace with his actual language before treating it as final client-facing copy.
 - **Team**: only the founder is populated in `/data/team.json`. No other team member
   bios/photos received yet.
-- **LFTLR**: `/data/lftlr.json` and `/lftlr.html` need the URL of the existing Live
-  From The Living Room site, plus featured artist/episode content, none provided yet.
+- **LFTLR**: photos are real now (see above), but `/data/lftlr.json` and
+  `/lftlr.html` still need the URL of the existing Live From The Living Room
+  site, real names/roles for the people in the SZN 3 photos (captions
+  currently say "Live From The Living Room, SZN 3" rather than guessing
+  names), and Episodes/Timeline content — none of that was in the
+  PHOTOGRAPHY export.
 - **Careers form / Contact form**: both forms in `careers.html` and `contact.html`
   currently just show a "not yet live" status message (see `initInquiryForms()` in
   `main.js`, which handles every `[data-inquiry-form]` on the site). They are NOT

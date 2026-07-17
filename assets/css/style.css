@@ -280,6 +280,14 @@ textarea { min-height: 140px; resize: vertical; }
 /* Testimonials ------------------------------------------------------------*/
 blockquote.card { margin: 0; display: grid; gap: var(--space-1); }
 
+/* Video embeds --------------------------------------------------------------
+   16:9 responsive wrapper for YouTube iframes. aspect-ratio does the sizing
+   work at every viewport (mobile full-width down to desktop grid columns),
+   no padding-hack needed. */
+.video-embed { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden; border: 1px solid var(--aaec-line); }
+.video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-embed-caption { margin-top: 0.6rem; }
+
 /* Keyboard focus ------------------------------------------------------------
    Mouse clicks don't show this ring (default :focus-visible behavior); tab
    navigation does. Declared after the form/nav rules above so it wins the

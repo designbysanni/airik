@@ -1,50 +1,100 @@
 [
   {
-    "title": "Sample Project One",
-    "category": "Commercial",
-    "image": "/assets/images/stock/work-commercial-clapperboard.jpg",
-    "href": "/work/template.html",
-    "featured": true,
-    "note": "PLACEHOLDER — replace with a real project once the portfolio zip is in. Duplicate /work/template.html per project. image is a royalty-free stock photo standing in for real work, see /assets/images/stock/CREDITS.md."
-  },
-  {
-    "title": "Sample Project Two",
+    "title": "Kwame & Kruma — Hat Campaign",
     "category": "Music & Culture",
-    "image": "/assets/images/stock/work-music-culture-concert.jpg",
-    "href": "/work/template.html",
-    "featured": true,
-    "note": "PLACEHOLDER — stock photo, see /assets/images/stock/CREDITS.md."
+    "image": "/assets/images/work/kwame-kruma/01.jpg",
+    "href": "/work/kwame-kruma.html",
+    "featured": true
   },
   {
-    "title": "Sample Project Three",
+    "title": "Sports & Athletics",
     "category": "Sports",
-    "image": "/assets/images/stock/work-sports-basketball.jpg",
-    "href": "/work/template.html",
-    "featured": true,
-    "note": "PLACEHOLDER — stock photo, see /assets/images/stock/CREDITS.md."
+    "image": "/assets/images/work/sports/01.jpg",
+    "href": "/work/sports.html",
+    "featured": true
   },
   {
-    "title": "Sample Project Four",
+    "title": "Kinki Behavior — Goddess Campaign",
+    "category": "Commercial",
+    "image": "/assets/images/work/kinki-behavior/01.jpg",
+    "href": "/work/kinki-behavior.html",
+    "featured": true
+  },
+  {
+    "title": "Dodge Charger Campaign",
+    "category": "Commercial",
+    "image": "/assets/images/work/cars/01.jpg",
+    "href": "/work/cars.html",
+    "featured": false
+  },
+  {
+    "title": "Product Photography",
+    "category": "Commercial",
+    "image": "/assets/images/work/product/01.jpg",
+    "href": "/work/product.html",
+    "featured": false
+  },
+  {
+    "title": "Preserving Culture — A Documentary Short",
     "category": "Documentary",
-    "image": "/assets/images/stock/work-documentary-bw.jpg",
-    "href": "/work/template.html",
-    "featured": false,
-    "note": "PLACEHOLDER — stock photo, see /assets/images/stock/CREDITS.md."
+    "image": "/assets/images/work/community/01.jpg",
+    "href": "/work/documentary.html",
+    "featured": false
   },
   {
-    "title": "Sample Project Five",
+    "title": "Community & Culture",
     "category": "Community",
-    "image": "/assets/images/stock/work-community-mural-chicago.jpg",
-    "href": "/work/template.html",
-    "featured": false,
-    "note": "PLACEHOLDER — stock photo, see /assets/images/stock/CREDITS.md."
+    "image": "/assets/images/work/community/01.jpg",
+    "href": "/work/community.html",
+    "featured": false
   },
   {
-    "title": "Sample Project Six",
+    "title": "T-Mobile: Take Over The Streetz",
     "category": "Events",
-    "image": "/assets/images/stock/work-events-theater.jpg",
-    "href": "/work/template.html",
-    "featured": false,
-    "note": "PLACEHOLDER — \"featured\": true on the first 3 items just controls what shows in the Home page's \"Featured Work\" section (see [data-featured-only] in index.html). The Work page always shows all items regardless of this flag. Set/unset freely once real projects replace these placeholders. image is a royalty-free stock photo, see /assets/images/stock/CREDITS.md."
+    "image": "/assets/images/work/t-mobile-streetz/01.jpg",
+    "href": "/work/t-mobile-streetz.html",
+    "featured": false
+  },
+  {
+    "title": "U.S. Cellular Campaign",
+    "category": "Commercial",
+    "image": "/assets/images/work/us-cellular/01.jpg",
+    "href": "/work/us-cellular.html",
+    "featured": false
+  },
+  {
+    "title": "Swishers Campaign",
+    "category": "Commercial",
+    "image": "/assets/images/work/swishers/01.jpg",
+    "href": "/work/swishers.html",
+    "featured": false
+  },
+  {
+    "title": "Spirits Campaign",
+    "category": "Commercial",
+    "image": "/assets/images/work/spirits/01.jpg",
+    "href": "/work/spirits.html",
+    "featured": false
+  },
+  {
+    "title": "Entertainment & Music Industry",
+    "category": "Music & Culture",
+    "image": "/assets/images/work/entertainment/01.jpg",
+    "href": "/work/entertainment.html",
+    "featured": false
+  },
+  {
+    "title": "Lifestyle & Editorial",
+    "category": "Photography",
+    "image": "/assets/images/work/lifestyle/01.jpg",
+    "href": "/work/lifestyle.html",
+    "featured": false
+  },
+  {
+    "title": "Corporate Headshots",
+    "category": "Photography",
+    "image": "/assets/images/work/headshots/01.jpg",
+    "href": "/work/headshots.html",
+    "featured": false
   }
 ]
