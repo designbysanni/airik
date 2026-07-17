@@ -122,11 +122,12 @@ function renderWorkGrid(grid, items) {
   grid.innerHTML = items
     .map(
       (item) => `
-      <a class="media-card${item.image ? " brand-photo-frame" : ""} reveal is-visible" href="${item.href || "/work/template.html"}">
-        ${item.image ? `<img class="brand-photo" src="${item.image}" alt="${item.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Image pending<br>${item.title}</div>`}
+      <a class="media-card reveal is-visible" href="${item.href || "/work/template.html"}">
+        ${item.image ? `<img src="${item.image}" alt="${item.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Image pending<br>${item.title}</div>`}
         <div class="caption">
           <span class="eyebrow">${item.category}</span>
           <h4>${item.title}</h4>
+          <span class="view-link">View Project →</span>
         </div>
       </a>`
     )
