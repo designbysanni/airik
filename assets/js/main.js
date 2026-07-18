@@ -21,6 +21,14 @@ function loadPartials() {
   const header = document.querySelector("[data-include-header]");
   const footer = document.querySelector("[data-include-footer]");
   const jobs = [];
+  // Deliberately still .html here, not the clean URL: this is a raw file
+  // fetch (get the partial's actual markup), not page navigation, and it
+  // needs to work identically against the local python -m http.server used
+  // for quick local checks throughout this project (which doesn't process
+  // .htaccess/vercel.json at all — the clean path 404s there). In
+  // production this costs one extra 301/308 round-trip per page load
+  // (fetch() follows it transparently) — acceptable; not worth losing easy
+  // local testing to shave off.
   if (header) jobs.push(fetch("/partials/header.html").then((r) => r.text()).then((html) => (header.innerHTML = html)));
   if (footer) jobs.push(fetch("/partials/footer.html").then((r) => r.text()).then((html) => (footer.innerHTML = html)));
   return Promise.all(jobs).catch((err) => console.error("Failed to load partials", err));
