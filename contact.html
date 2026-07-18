@@ -33,10 +33,16 @@
     <div class="container">
       <div class="grid grid-2">
         <div class="reveal">
-          <!-- TODO: wire this to GoHighLevel (embed the GHL form/calendar widget here,
-               or point the form action at the GHL form endpoint). See CLAUDE.md
-               "GHL integration" for the security note on the private integration token. -->
+          <!-- Submits via fetch() (see initInquiryForms() in main.js) to
+               /api/submit-lead.php, which creates/tags the contact in GHL
+               server-side. See CLAUDE.md "GHL integration". -->
           <form data-inquiry-form>
+            <input type="hidden" name="source" value="contact">
+            <!-- Honeypot: real visitors never see or fill this in (see style.css). -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <div>
               <label for="name">Name</label>
               <input id="name" name="name" type="text" required>

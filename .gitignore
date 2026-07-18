@@ -5,3 +5,8 @@ node_modules/
 .env.local
 
 .vercel
+
+# Real GHL credentials — see api/config.example.php for the template.
+# Upload the real api/config.php to Hostinger manually (File Manager/SFTP),
+# never via git.
+api/config.php

@@ -17,7 +17,11 @@ Domain: airikart.com. Business email: info@airikart.com.
 Plain HTML/CSS/JS. No build step, no npm dependencies required to run or deploy.
 This is intentional: the site deploys to Hostinger shared hosting by uploading the
 files as-is, and content updates should be doable in a single Claude Code prompt
-without a build/deploy pipeline.
+without a build/deploy pipeline. One deliberate exception: `/api/submit-lead.php`
+— the Contact/Careers forms need *something* server-side to hold the GHL API
+token safely, and PHP is the only server-side runtime Hostinger shared hosting
+gives you without a build step, so that's what it is. See "GHL integration"
+below before touching it.
 
 - `/assets/css/style.css` — single stylesheet, all design tokens as CSS custom
   properties at the top (`:root`). Change brand colors/fonts/spacing there, not
@@ -195,19 +199,83 @@ with the same filename just works.
 
 ## GHL (GoHighLevel) integration — read before touching forms
 
-The plan is to connect `contact.html` and `careers.html` forms to a GHL sub-account
-for lead capture, tracking, and automation. Two things to keep in mind:
+**As of 2026-07-18, both forms are live**, wired to GHL through a custom PHP
+endpoint rather than an embedded GHL form widget — Airik wanted the forms to
+stay fully on-brand rather than looking like a generic GHL widget.
 
-1. GHL's client-side embeds (form/calendar widgets, tracking snippet) use public
-   form/location IDs and are safe to paste into these HTML pages.
-2. GHL **Private Integration Tokens** (strings starting with `pit-`) are API secrets
-   for server-side/backend calls. They must never be pasted into any HTML/JS file in
-   this repo, since anything in these files is publicly visible in page source once
-   deployed. If a private integration token is ever needed for something (custom
-   backend automation, Zapier step, etc.), it belongs in a server-side environment
-   variable, not in this static site.
+### Architecture
+
+`contact.html` and `careers.html` each have a real `<form data-inquiry-form>`
+built with the site's own markup/CSS (not GHL's). `initInquiryForms()` in
+`main.js` intercepts submit, does a `fetch()` POST (JSON) to
+`/api/submit-lead.php`, and shows a themed success/"email us directly" error
+message based on the response — no page reload, no GHL branding anywhere.
+
+`api/submit-lead.php` (PHP — the one exception to "no server-side code" in
+this otherwise fully static site) does the actual GHL work server-side:
+1. Rejects anything that isn't POST, isn't valid JSON, or trips the
+   honeypot (`website` field — see `.hp-field` in `style.css`, off-screen
+   rather than `display:none` so basic bots filling every input can't tell
+   it's a trap).
+2. Validates name + email.
+3. Calls GHL's v2 API three times (all confirmed working against the live
+   account on 2026-07-18, then the test contact was deleted): `POST
+   /contacts/upsert` (create/update the contact), `POST
+   /contacts/{id}/tags` (apply `"Website Lead - Contact"` or `"Website Lead
+   - Careers"` depending on which form it was — **not** passed via the
+   upsert call's own `tags` field, since that field *overwrites* all
+   existing tags rather than adding one), then `POST
+   /contacts/{id}/notes` (the free-text fields — project type/budget/
+   message, or area-of-interest/message — as one formatted note, since we
+   don't have GHL custom-field IDs to target individual fields).
+4. Auth: `Authorization: Bearer <token>` + `Version: 2021-07-28` headers.
+   Full endpoint reference: https://marketplace.gohighlevel.com/docs/ghl/contacts/
+
+### Why this needed a PHP file at all
+
+GHL doesn't publish a documented, secret-free API for anonymous form
+submissions — their real Contacts API requires the Private Integration
+Token, which can **never** go in browser JS (or anywhere in this repo —
+same rule as always: it's public the moment it's in a file that reaches the
+browser or git history). A raw client-side `fetch()` straight to GHL was
+not an option. `api/submit-lead.php` is a minimal server-side proxy: it's
+the only thing that ever touches the token, and it never returns the token
+or raw GHL responses to the browser.
+
+This is why Hostinger needs to run PHP for the forms to work — true for
+essentially every Hostinger shared hosting plan, but worth confirming. If
+PHP genuinely isn't available, the forms degrade to showing the "email us
+directly" fallback message rather than breaking (the `fetch()` catch
+handler treats a non-JSON response — e.g. a 404 HTML page — the same as a
+GHL failure).
+
+### The two secrets/config files
+
+- `api/config.example.php` — committed template, placeholder token.
+- `api/config.php` — **gitignored**, holds the real
+  `pit-...` token and the (non-secret) `ghl_location_id`
+  (`qKXPbny1l22naqOolkOb`, from the GHL location URL). This file exists
+  locally but is NOT in git and will NOT come along with a `git pull` on
+  Hostinger — **it has to be uploaded there manually** (File Manager or
+  SFTP), once, outside the git deploy flow. If Hostinger's git deploy ever
+  does a clean wipe+re-clone instead of an in-place pull, this file would
+  need re-uploading after every deploy — worth testing/confirming with
+  Airik/Sanni once the first real deploy happens.
+
+### GHL-side setup (workflows, not forms)
+
+Since there's no GHL Form involved anymore, don't build GHL "Form
+Submitted" workflow triggers — use **"Tag Added"** instead, filtered to
+`Website Lead - Contact` / `Website Lead - Careers` respectively. Each
+workflow should send an internal notification email to
+airikcrawford@gmail.com with an urgent subject line (a sender can request
+high-priority headers, but Gmail's own "Important" marker is algorithmic —
+not something a sender can force outright, so don't oversell that part).
+Exact prompts for GHL's AI workflow builder were provided to Sanni in chat
+when this was built; regenerate similar ones if these need to be rebuilt.
 
 ## Deployment target
 
-Hostinger shared hosting, static files only, no Node/build step on the server. See
+Hostinger shared hosting, static files + one PHP endpoint (`api/submit-lead.php`),
+git-deployed. No Node/build step on the server. See
 README.md for the exact upload steps and local preview instructions.

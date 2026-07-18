@@ -271,6 +271,12 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 textarea { min-height: 140px; resize: vertical; }
 .form-status { font-family: var(--font-structural); font-size: 0.85rem; letter-spacing: 0.05em; min-height: 1.2em; }
 
+/* Honeypot field (see api/submit-lead.php) — off-screen rather than
+   display:none/visibility:hidden, since some bots specifically skip fields
+   hidden that way. Real users never see or reach it (tabindex="-1" in the
+   markup keeps it out of keyboard tab order too). */
+.hp-field { position: absolute; left: -9999px; top: -9999px; }
+
 /* Footer ------------------------------------------------------------------*/
 .site-footer { padding: var(--space-5) 0 var(--space-3); border-top: 1px solid var(--aaec-line); }
 .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-4); }

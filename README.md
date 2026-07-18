@@ -52,30 +52,44 @@ known open items before making changes.
 
 ## Deploying to Hostinger
 
-No build step, no Node runtime needed on the server. Two options:
+No build step. The site needs a plain static file host **plus PHP** for
+`api/submit-lead.php` (the Contact/Careers forms) — Hostinger shared
+hosting runs PHP by default, so this needs no extra setup, just note it if
+ever moving off Hostinger. Two options:
 
-**Option A — File Manager (simplest)**
+**Option A — Git (what this repo is set up for)**
+Hostinger's hPanel → Advanced → Git lets you connect this GitHub repo and
+deploy on push. **One manual step the first time, and again if a deploy
+ever wipes the directory instead of an in-place pull**: `api/config.php` is
+gitignored (it holds the real GHL token) and will never come from git —
+copy `api/config.example.php` to `api/config.php` on the server (File
+Manager or SFTP) and fill in the real token. See `CLAUDE.md` → "GHL
+integration" for the full picture.
+
+**Option B — File Manager**
 1. Zip the project folder contents (not the folder itself, the files at its root).
 2. In hPanel, go to Files → File Manager → `public_html` for the domain.
 3. Upload the zip and extract it into `public_html`.
 4. Confirm `airikart.com` resolves to that `public_html` directory in hPanel →
    Domains.
+5. Manually create `api/config.php` there too (same as Option A).
 
-**Option B — FTP/SFTP**
+**Option C — FTP/SFTP**
 1. Get FTP credentials from hPanel → Files → FTP Accounts.
 2. Use any FTP client (FileZilla, Cyberduck) to upload the project root's contents
-   into `public_html`.
+   into `public_html`, including a manually-created `api/config.php`.
 
 Either way, updates after the first deploy are just: make the change locally (or via
-Claude Code), re-upload the changed files (or the whole folder), done. No build,
-no deploy pipeline, no server restart.
+Claude Code), re-upload the changed files (or push to git), done. No build,
+no deploy pipeline, no server restart — `api/config.php` only needs touching again
+if it gets wiped by a deploy.
 
 ## GoHighLevel (GHL)
 
-Contact and Careers forms are placeholders right now (see `CLAUDE.md` → "GHL
-integration"). When the GHL sub-account forms are ready, paste GHL's public
-form/calendar embed snippet into `contact.html` / `careers.html` in place of the
-current `<form data-inquiry-form>` block, and remove the corresponding placeholder
-logic in `initInquiryForms()` in `assets/js/main.js` if GHL's own embed handles
-submission. Never put a GHL Private Integration Token (`pit-...`) into any file in
-this repo, see `CLAUDE.md` for why.
+Contact and Careers forms are live, wired to GHL through a custom PHP endpoint
+(`api/submit-lead.php`) instead of an embedded GHL form widget, so they stay
+fully on-brand. Full architecture, the two config files, and the GHL-side
+workflow setup are documented in `CLAUDE.md` → "GHL integration" — read that
+before touching any form-related code. Never put a GHL Private Integration
+Token (`pit-...`) into any file that isn't `api/config.php` (which is
+gitignored) — see `CLAUDE.md` for why.

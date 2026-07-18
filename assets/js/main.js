@@ -237,19 +237,57 @@ function initTestimonials() {
     });
 }
 
-/* Contact + Careers forms: GHL isn't wired up yet, so submissions can't
-   actually go anywhere. Intercept submit and show a clear status message
-   instead of silently failing or pretending to send. Once GHL form embeds
-   are ready, replace the <form data-inquiry-form> blocks per README. ----- */
+/* Contact + Careers forms: posts to our own /api/submit-lead.php, which
+   holds the GHL credentials server-side and creates/tags the contact in
+   GHL. See CLAUDE.md "GHL integration" for why it's a custom PHP endpoint
+   instead of an embedded GHL form. Each <form data-inquiry-form> needs a
+   hidden "source" field ("contact" or "careers") so the endpoint knows
+   which tag/note shape to apply. --------------------------------------- */
 function initInquiryForms() {
   document.querySelectorAll("[data-inquiry-form]").forEach((form) => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const status = form.querySelector(".form-status");
-      if (!status) return;
-      status.textContent =
-        "This form isn't connected yet — please email info@airikart.com directly and we'll follow up. (Online submissions go live once the CRM is fully set up.)";
-      status.style.color = "var(--aaec-red-text)";
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.textContent : "";
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+      if (status) {
+        status.textContent = "Sending…";
+        status.style.color = "var(--aaec-silver)";
+      }
+
+      fetch("/api/submit-lead.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (!result.success) throw new Error(result.error || "Submission failed");
+          form.reset();
+          if (status) {
+            status.textContent = "Thanks — we've got it and will be in touch soon.";
+            status.style.color = "var(--aaec-white)";
+          }
+        })
+        .catch(() => {
+          if (status) {
+            status.textContent =
+              "Something went wrong sending this. Please email info@airikart.com directly and we'll follow up.";
+            status.style.color = "var(--aaec-red-text)";
+          }
+        })
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+        });
     });
   });
 }

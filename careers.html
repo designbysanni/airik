@@ -54,8 +54,16 @@
   <section>
     <div class="container reveal">
       <h3>General Application</h3>
-      <!-- TODO: wire this to GHL (form embed or action URL) once the GHL pipeline is set up. See CLAUDE.md. -->
+      <!-- Submits via fetch() (see initInquiryForms() in main.js) to
+           /api/submit-lead.php, which creates/tags the contact in GHL
+           server-side. See CLAUDE.md "GHL integration". -->
       <form data-inquiry-form>
+        <input type="hidden" name="source" value="careers">
+        <!-- Honeypot: real visitors never see or fill this in (see style.css). -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="careers-website">Website</label>
+          <input id="careers-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <div>
           <label for="name">Name</label>
           <input id="name" name="name" type="text" required>
