@@ -148,8 +148,8 @@ function initTeamModal() {
         .map(
           (m, i) => `
         <button class="team-member reveal is-visible" type="button" data-index="${i}">
-          <div class="media-card${m.photo ? " brand-photo-frame" : ""}">
-            ${m.photo ? `<img class="brand-photo" src="${m.photo}" alt="${m.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
+          <div class="media-card">
+            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
           </div>
           <h4>${m.name}</h4>
           <span class="role">${m.role}</span>
@@ -171,8 +171,8 @@ function initTeamModal() {
              </ul>`
           : "";
         overlay.querySelector("[data-modal-body]").innerHTML = `
-          <div class="media-card${m.photo ? " brand-photo-frame" : ""}" style="aspect-ratio:1/1;max-width:220px;margin-bottom:1.5rem;">
-            ${m.photo ? `<img class="brand-photo" src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
+          <div class="media-card" style="aspect-ratio:1/1;max-width:220px;margin-bottom:1.5rem;">
+            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
           </div>
           <h3>${m.name}</h3>
           <span class="role">${m.role}</span>

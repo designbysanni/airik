@@ -130,22 +130,27 @@ sourcing/selection details and known gaps), and `/assets/images/work/lftlr/`
 holds real Live From The Living Room photos used on `/lftlr.html`.
 
 Real photography does **not** get the grayscale/red-duotone treatment —
-`.brand-photo` is reserved for the two remaining stock images (see below).
+`.brand-photo` is reserved for the one remaining stock image (see below).
 Showing the client's actual work in its true color/quality is the point;
 don't apply that filter to new real photos without a specific reason.
 
-Two stock images remain, deliberately, in `/assets/images/stock/` (see
+`/assets/images/team/airik-crawford.jpg` is Airik's real portrait (from
+`PHOTOGRAPHY/airik.jpg`, added 2026-07-18), used in `data/team.json` and the
+About page Founder section. This replaced an earlier no-identifiable-face
+silhouette placeholder that stood in only because no real photo of him
+existed yet — that reasoning no longer applies now that a real one does. If
+the team grows, follow the same pattern: a real photo per person in
+`assets/images/team/`, referenced from `data/team.json`. Don't reach for a
+stock/silhouette placeholder for a *named* team member unless there's
+genuinely no photo of them yet — see `assets/images/stock/CREDITS.md` for
+why that distinction matters.
+
+One stock image remains, deliberately, in `/assets/images/stock/` (see
 `assets/images/stock/CREDITS.md`):
 - `chicago-skyline-night.jpg` — Home/About/Contact hero backgrounds. Kept
   because it's meaningfully tied to AAEC's real Chicago origin story, not
   filler; swap for a real Chicago shot of Airik's own if he ever takes one,
   otherwise leave it.
-- `about-airik-silhouette.jpg` — Airik's team portrait slot (`data/team.json`
-  + About page Founder section). A backlit, no-identifiable-face placeholder
-  used *because* no photo should claim to be him except an actual photo of
-  him. Replace only with a real photo of Airik Crawford, never with another
-  stock image — if you don't have one, leave this silhouette in place rather
-  than substituting a different stranger's photo.
 
 If Airik sends more/better photos later (especially for `US CELLULAR`, which
 only had one usable real image after filtering out screenshots — see
