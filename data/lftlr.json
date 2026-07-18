@@ -1,8 +1,6 @@
 {
-  "existingSiteUrl": "",
-  "note": "PLACEHOLDER — add the URL of the existing Live From The Living Room site once Airik provides it. Unlike work.json/team.json, lftlr.html does not currently fetch this file — the page is hand-written static placeholder HTML since there's no real content yet. Once featuredArtists/episodes/gallery/timeline are populated here, either wire lftlr.html to fetch and render them (matching the work.json/team.json pattern), or hand-edit the HTML directly if the content is small and mostly static.",
+  "existingSiteUrl": "https://lftlr.com",
+  "note": "existingSiteUrl confirmed 2026-07-18 (was a placeholder before). lftlr.html does not fetch this file — its CTA button links directly to existingSiteUrl in the HTML. Episodes and Timeline sections were removed from lftlr.html at launch (2026-07-18): no real content existed for them, and fabricating one would have contradicted the go-live requirement not to invent details. featuredArtists/gallery here are also unused by the page currently (it uses real photos directly from assets/images/work/lftlr/ instead) — kept as an option if the page is ever restructured to be JSON-driven like work.json/team.json.",
   "featuredArtists": [],
-  "episodes": [],
-  "gallery": [],
-  "timeline": []
+  "gallery": []
 }

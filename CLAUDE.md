@@ -165,37 +165,58 @@ with the same filename just works.
 
 ## Known blockers / open items (check if still true before assuming)
 
-- **Portfolio media**: RESOLVED as of the PHOTOGRAPHY export — `/data/work.json`
-  has 14 real projects with real photos and, where applicable, real embedded
-  YouTube video. Remaining gap: none of these projects have real client-approved
-  "Brief"/"Approach" copy — the current text on each `/work/<slug>.html` is
-  written by Claude based on the category/title, not provided by Airik. Confirm
-  or replace with his actual language before treating it as final client-facing copy.
-- **Team**: only the founder is populated in `/data/team.json`. No other team member
-  bios/photos received yet.
-- **LFTLR**: photos are real now (see above), but `/data/lftlr.json` and
-  `/lftlr.html` still need the URL of the existing Live From The Living Room
-  site, real names/roles for the people in the SZN 3 photos (captions
-  currently say "Live From The Living Room, SZN 3" rather than guessing
-  names), and Episodes/Timeline content — none of that was in the
-  PHOTOGRAPHY export.
-- **Careers form / Contact form**: both forms in `careers.html` and `contact.html`
-  currently just show a "not yet live" status message (see `initInquiryForms()` in
-  `main.js`, which handles every `[data-inquiry-form]` on the site). They are NOT
-  wired to GoHighLevel yet.
+**Launch pass done 2026-07-18**: went through the whole site removing every
+visible "PLACEHOLDER"/TODO a real visitor could see, on the rule "write
+real copy only where it's confirmed true, otherwise remove the section
+rather than fabricate or leave a visible placeholder." What's below is
+what's left — genuinely still open, not fabricated to fill a gap.
+
+- **Portfolio media**: real (14 projects, real photos, real embedded video —
+  see `assets/images/work/CREDITS.md`). Remaining gap: none of these projects
+  have real client-approved "Brief"/"Approach" copy — the current text on
+  each `/work/<slug>.html` is written by Claude based on the category/title
+  (generic, defensible, no fabricated specific claims — but not Airik's own
+  words). Confirm or replace before treating it as final client-facing copy.
+- **Team**: only the founder is populated in `/data/team.json`, with his real
+  photo and bio. No other team member bios/photos received yet — if AAEC has
+  more team members, this needs input from Airik; not something to invent.
+- **LFTLR**: `existingSiteUrl` in `/data/lftlr.json` is confirmed
+  (`https://lftlr.com`, linked from the page's CTA). `/lftlr.html`'s
+  Overview section now has real, confirmed copy (references the real "SZN 3"
+  branding visible in Airik's own photography). The brief's Episodes and
+  Timeline sections were **removed** rather than filled with placeholder or
+  invented content — there was no real content for either, and the page's
+  CTA already sends visitors to the full site (which is the actual source
+  for that content) rather than duplicating it here. Revisit if Airik wants
+  Episodes/Timeline built out on this site specifically rather than just
+  linked externally. Names/roles for the people in the Featured Artists
+  photos are still unconfirmed — captions say "Live From The Living Room,
+  SZN 3" rather than guessing names.
+- **Testimonials**: removed entirely from the Home page (was a single
+  "PLACEHOLDER" quote, `data/testimonials.json` is now `[]`) rather than
+  ship a fake or empty-looking section. To bring it back once real
+  testimonials exist: re-add the `<section>` block to `index.html` (see git
+  history around 2026-07-18 for the exact markup that was removed) and
+  populate `data/testimonials.json` — `initTestimonials()` in `main.js`
+  still exists and will pick it back up automatically, no JS changes needed.
+- **Client logos**: client names on the Home page are text tags (from the
+  brand guide's client list), not actual logo images — get logo
+  permission/files from Airik before swapping to real logos.
 - **Favicon**: currently the black Aquinas Symbol PNG (`aquinas-symbol-black.png`),
   which is only visible on light-colored browser chrome — it disappears against a
   dark browser theme/tab bar. A proper favicon (multi-size, with a background chip
   or an adaptive SVG) should be generated from a vector master once one exists;
   treat the current one as a functional placeholder, not the final asset.
-- **Testimonials/client logos**: `/data/testimonials.json` is a placeholder. Client
-  names on the Home page are text tags (from the brand guide's client list), not
-  actual logo images — get logo permission/files before swapping to real logos.
 - **Photography direction**: brand guide explicitly leaves color treatment (b&w vs.
   color), framing (tight portrait vs. wide/environmental), and lighting mood
   (moody/low-key vs. bright/hard-contrast) undefined. Don't invent a firm direction
   here without checking the client's reference portfolio
   (https://ericcrawford.myportfolio.com/) or asking.
+
+Contact/Careers forms are NOT a blocker — both are fully live, wired to GHL
+via a custom PHP endpoint with a direct email notification. See "GHL
+integration" below; don't reintroduce stale "forms aren't wired up yet"
+assumptions.
 
 ## GHL (GoHighLevel) integration — read before touching forms
 

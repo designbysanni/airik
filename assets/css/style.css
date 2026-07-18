@@ -136,7 +136,12 @@ p { margin: 0 0 var(--space-2); color: var(--aaec-silver); max-width: 60ch; }
   .main-nav { position: fixed; inset: 0; background: var(--aaec-black); flex-direction: column; justify-content: center; transform: translateY(-100%); transition: transform 0.4s var(--ease); }
   .main-nav.is-open { transform: translateY(0); }
   .main-nav ul { flex-direction: column; align-items: center; gap: var(--space-3); }
-  .main-nav a { font-size: 1.4rem; }
+  /* align-items:center above only centers each link's box; its wrapped text
+     still defaults to text-align:left within that box, which looked
+     lopsided on "Live From The Living Room" wrapping to 2 lines — text-align
+     here fixes that. Slightly smaller size + tighter letter-spacing than
+     before so it's less likely to wrap to 2 lines in the first place. */
+  .main-nav a { font-size: 1.15rem; letter-spacing: 0.08em; text-align: center; }
   .nav-toggle { display: block; z-index: 110; }
 }
 
