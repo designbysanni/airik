@@ -249,30 +249,56 @@ directly" fallback message rather than breaking (the `fetch()` catch
 handler treats a non-JSON response — e.g. a 404 HTML page — the same as a
 GHL failure).
 
-### The two secrets/config files
+### The config file (secrets + settings)
 
-- `api/config.example.php` — committed template, placeholder token.
-- `api/config.php` — **gitignored**, holds the real
-  `pit-...` token and the (non-secret) `ghl_location_id`
-  (`qKXPbny1l22naqOolkOb`, from the GHL location URL). This file exists
-  locally but is NOT in git and will NOT come along with a `git pull` on
-  Hostinger — **it has to be uploaded there manually** (File Manager or
-  SFTP), once, outside the git deploy flow. If Hostinger's git deploy ever
-  does a clean wipe+re-clone instead of an in-place pull, this file would
-  need re-uploading after every deploy — worth testing/confirming with
-  Airik/Sanni once the first real deploy happens.
+- `api/config.example.php` — committed template, placeholder values.
+- `api/config.php` — **gitignored**, holds:
+  - `ghl_token` — the real `pit-...` token.
+  - `ghl_location_id` — not a secret, `qKXPbny1l22naqOolkOb`, from the GHL
+    location URL.
+  - `notify_email` — where the urgent notification email goes (see below).
+    Comma-separated for multiple recipients.
+  - `from_email` — the "From" address on that email, should be a real
+    mailbox on the domain (`info@airikart.com`) for deliverability.
 
-### GHL-side setup (workflows, not forms)
+  This file exists locally but is NOT in git and will NOT come along with a
+  `git pull` on Hostinger — **it has to be uploaded there manually** (File
+  Manager or SFTP). If Hostinger's git deploy ever does a clean
+  wipe+re-clone instead of an in-place pull, this file would need
+  re-uploading after every deploy.
 
-Since there's no GHL Form involved anymore, don't build GHL "Form
-Submitted" workflow triggers — use **"Tag Added"** instead, filtered to
-`Website Lead - Contact` / `Website Lead - Careers` respectively. Each
-workflow should send an internal notification email to
-airikcrawford@gmail.com with an urgent subject line (a sender can request
-high-priority headers, but Gmail's own "Important" marker is algorithmic —
-not something a sender can force outright, so don't oversell that part).
-Exact prompts for GHL's AI workflow builder were provided to Sanni in chat
-when this was built; regenerate similar ones if these need to be rebuilt.
+### Urgent notification email: sent directly by PHP, not a GHL workflow
+
+**This was originally built as a GHL workflow** (trigger: Tag Added ->
+send email), per the plan documented in earlier chat history. That
+approach hit real friction in GHL's actual UI: GHL's "Email" workflow
+action only sends to the *contact* (no arbitrary recipient field), and
+"Internal Notification" only reaches GHL platform *users*, not an arbitrary
+external address — neither maps cleanly onto "email this fixed Gmail
+address," and this was going back and forth for multiple messages with the
+client before switching approaches.
+
+**Current approach**: `api/submit-lead.php` sends the notification email
+directly via PHP `mail()`, independent of the GHL sync — see the code
+comment at the top of that file. This means:
+- The notification fires even if the GHL API call fails for any reason
+  (network issue, bad token, GHL outage) — a lead is never silently missed
+  just because the CRM sync had a bad moment. The email body includes a
+  note when this happens, since GHL won't have the lead either.
+- No GHL workflow is required for the notification to work at all. If one
+  still exists in GHL from the earlier approach, it's redundant (extra
+  email) but harmless — fine to leave, remove, or repurpose for pipeline
+  automation unrelated to notification.
+- `Reply-To` on the notification email is set to the submitter's own
+  address, so replying goes straight to the lead, not to `info@airikart.com`.
+- One honest caveat, unchanged from the original plan: the urgent subject
+  line + `Importance: High` header are the real, controllable levers.
+  Gmail's own "Important" marker is algorithmic (recipient behavior-based)
+  — not something a sender can force, so don't oversell that part.
+- `mail()` deliverability depends on Hostinger's outbound mail
+  configuration (SPF/DKIM for `from_email`'s domain) — if notification
+  emails start landing in spam, that's a Hostinger email-hosting
+  configuration question, not a bug in this script.
 
 ## Clean URLs (no `.html` in links)
 

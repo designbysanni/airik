@@ -9,6 +9,16 @@
  * https://marketplace.gohighlevel.com/docs/ghl/contacts/upsert-contact
  * https://marketplace.gohighlevel.com/docs/ghl/contacts/add-tags
  * https://marketplace.gohighlevel.com/docs/ghl/contacts/create-note
+ *
+ * The "notify someone immediately" requirement is handled directly here via
+ * PHP mail(), NOT via a GHL workflow — GHL's workflow builder turned out to
+ * have real UI friction for "email an arbitrary address" (its "Email"
+ * action only sends to the contact; "Internal Notification" only reaches
+ * GHL platform users, not arbitrary addresses) that isn't worth fighting
+ * when this script already has every field in hand. GHL's tag + note are
+ * still created for his CRM/pipeline, but the notification email no longer
+ * depends on that succeeding, or on GHL workflow config at all — see
+ * $notifyResult below, which fires independently of the GHL try/catch.
  */
 
 header('Content-Type: application/json');
@@ -117,6 +127,10 @@ function ghlRequest($method, $path, $token, ?array $body = null) {
     return json_decode($response, true);
 }
 
+// GHL sync: valuable for the CRM/pipeline, but must not block or break the
+// notification email below if it fails for any reason.
+$ghlOk = true;
+$ghlError = null;
 try {
     $upsert = ghlRequest('POST', '/contacts/upsert', $config['ghl_token'], [
         'name' => $name,
@@ -138,13 +152,64 @@ try {
         'title' => $noteTitle,
         'body' => $noteBody,
     ]);
-
-    echo json_encode(['success' => true]);
 } catch (Exception $e) {
-    error_log('submit-lead.php GHL error: ' . $e->getMessage());
+    $ghlOk = false;
+    $ghlError = $e->getMessage();
+    error_log('submit-lead.php GHL error: ' . $ghlError);
+}
+
+// Direct notification email — the actual "someone needs to see this now"
+// mechanism. Fires regardless of whether GHL succeeded, so a lead never
+// gets missed just because the CRM sync had a bad moment.
+$notifyTo = $config['notify_email'] ?? null;
+$notifyOk = false;
+if ($notifyTo) {
+    $subjectLine = ($source === 'contact' ? 'New Project Inquiry' : 'New Careers Application')
+        . " from {$name} - Contact ASAP";
+    $subject = '=?UTF-8?B?' . base64_encode("URGENT - {$subjectLine}") . '?='; // safe for non-ASCII names
+
+    $lines = [
+        'New submission through the website. Please reach out by phone or email within 24 hours.',
+        '',
+        "Name: {$name}",
+        "Email: {$email}",
+    ];
+    if ($source === 'contact') {
+        $lines[] = "Project type: {$projectType}";
+        $lines[] = "Budget: {$budget}";
+        $lines[] = "Message: {$message}";
+    } else {
+        $lines[] = "Area of interest: {$area}";
+        $lines[] = "Message: {$message}";
+    }
+    if (!$ghlOk) {
+        $lines[] = '';
+        $lines[] = "(Note: syncing this to GHL failed, so it may not show up there yet — {$ghlError})";
+    }
+    $body = implode("\n", $lines);
+
+    $fromAddress = $config['from_email'] ?? 'info@airikart.com';
+    $headers = [
+        'From: AAEC Website <' . $fromAddress . '>',
+        'Reply-To: ' . $email, // hit reply and it goes straight to the lead
+        'Content-Type: text/plain; charset=UTF-8',
+        'X-Priority: 1 (Highest)',
+        'X-MSMail-Priority: High',
+        'Importance: High',
+    ];
+
+    $notifyOk = @mail($notifyTo, $subject, $body, implode("\r\n", $headers));
+    if (!$notifyOk) {
+        error_log('submit-lead.php: mail() to notify_email failed');
+    }
+}
+
+if ($notifyOk || $ghlOk) {
+    echo json_encode(['success' => true]);
+} else {
     http_response_code(502);
     echo json_encode([
         'success' => false,
-        'error' => 'Could not reach our CRM right now. Please email info@airikart.com directly.',
+        'error' => 'Could not send this right now. Please email info@airikart.com directly.',
     ]);
 }

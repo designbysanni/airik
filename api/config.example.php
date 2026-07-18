@@ -14,8 +14,20 @@
  * ghl_location_id: NOT a secret, safe to reference anywhere — it's the
  * sub-account ID from the GHL location URL
  * (https://app.guaranteedcrm.io/v2/location/<this-id>).
+ *
+ * notify_email: where the urgent "someone submitted a form" email goes.
+ * PHP's mail() accepts a comma-separated list here if more than one person
+ * should get it (e.g. during testing: "airikcrawford@gmail.com, you@example.com").
+ * This fires independently of the GHL sync — see submit-lead.php.
+ *
+ * from_email: the "From" address on that notification email. Should be a
+ * real mailbox on this domain (e.g. info@airikart.com) for best
+ * deliverability — an unconfigured/nonexistent From address is more likely
+ * to get flagged as spam.
  */
 return [
     'ghl_token' => 'pit-REPLACE_WITH_REAL_PRIVATE_INTEGRATION_TOKEN',
     'ghl_location_id' => 'qKXPbny1l22naqOolkOb',
+    'notify_email' => 'airikcrawford@gmail.com',
+    'from_email' => 'info@airikart.com',
 ];
