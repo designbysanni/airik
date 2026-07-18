@@ -1,0 +1,7 @@
+# Server config files: force LF regardless of the committing platform.
+# This repo has been worked on from Windows all session (git's own "LF
+# will be replaced by CRLF" warnings on every commit prove it) — cheap
+# insurance against Apache ever choking on a CRLF-terminated directive,
+# even though the likelier cause of the live rewrite rules not firing is
+# server-side (AllowOverride/mod_rewrite availability), not this.
+.htaccess text eol=lf

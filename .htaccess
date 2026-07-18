@@ -5,6 +5,14 @@
 
 RewriteEngine On
 
+# work.html and the work/ folder (project detail pages) share the name
+# "work" — Apache's own mod_dir would otherwise auto-redirect a bare
+# /work request to /work/ (treating it as the directory) before rule 3
+# below ever runs, since that directory genuinely exists. Turning this off
+# means rule 3's ".html file exists" check always wins for the bare path,
+# which is what we want: /work -> work.html, /work/<slug> -> work/<slug>.html.
+DirectorySlash Off
+
 # 1. Canonical redirect: anyone hitting /page.html directly (old bookmark,
 #    external link, search engine that indexed it before this change) gets
 #    a permanent redirect to the clean /page URL, so there's exactly one
@@ -18,9 +26,9 @@ RewriteRule ^ /%1 [R=301,L]
 RewriteRule ^index/?$ / [R=301,L]
 
 # 3. Internally serve the real .html file for the extension-less request,
-#    without changing what's in the browser's address bar. Only applies
-#    when a matching .html file actually exists on disk, so this doesn't
-#    swallow requests for images, work/<slug> subfolders, etc.
-RewriteCond %{REQUEST_FILENAME} !-d
+#    without changing what's in the browser's address bar. The .html file
+#    takes priority even when a same-named directory also exists (see
+#    DirectorySlash Off above) — deliberately no "!-d" (not-a-directory)
+#    condition here for that reason.
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
