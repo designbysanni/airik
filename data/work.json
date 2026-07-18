@@ -3,98 +3,98 @@
     "title": "Kwame & Kruma — Hat Campaign",
     "category": "Music & Culture",
     "image": "/assets/images/work/kwame-kruma/01.jpg",
-    "href": "/work/kwame-kruma.html",
+    "href": "/work/kwame-kruma",
     "featured": true
   },
   {
     "title": "Sports & Athletics",
     "category": "Sports",
     "image": "/assets/images/work/sports/01.jpg",
-    "href": "/work/sports.html",
+    "href": "/work/sports",
     "featured": true
   },
   {
     "title": "Kinki Behavior — Goddess Campaign",
     "category": "Commercial",
     "image": "/assets/images/work/kinki-behavior/01.jpg",
-    "href": "/work/kinki-behavior.html",
+    "href": "/work/kinki-behavior",
     "featured": true
   },
   {
     "title": "Dodge Charger Campaign",
     "category": "Commercial",
     "image": "/assets/images/work/cars/01.jpg",
-    "href": "/work/cars.html",
+    "href": "/work/cars",
     "featured": false
   },
   {
     "title": "Product Photography",
     "category": "Commercial",
     "image": "/assets/images/work/product/01.jpg",
-    "href": "/work/product.html",
+    "href": "/work/product",
     "featured": false
   },
   {
     "title": "Preserving Culture — A Documentary Short",
     "category": "Documentary",
     "image": "/assets/images/work/community/01.jpg",
-    "href": "/work/documentary.html",
+    "href": "/work/documentary",
     "featured": false
   },
   {
     "title": "Community & Culture",
     "category": "Community",
     "image": "/assets/images/work/community/01.jpg",
-    "href": "/work/community.html",
+    "href": "/work/community",
     "featured": false
   },
   {
     "title": "T-Mobile: Take Over The Streetz",
     "category": "Events",
     "image": "/assets/images/work/t-mobile-streetz/01.jpg",
-    "href": "/work/t-mobile-streetz.html",
+    "href": "/work/t-mobile-streetz",
     "featured": false
   },
   {
     "title": "U.S. Cellular Campaign",
     "category": "Commercial",
     "image": "/assets/images/work/us-cellular/01.jpg",
-    "href": "/work/us-cellular.html",
+    "href": "/work/us-cellular",
     "featured": false
   },
   {
     "title": "Swishers Campaign",
     "category": "Commercial",
     "image": "/assets/images/work/swishers/01.jpg",
-    "href": "/work/swishers.html",
+    "href": "/work/swishers",
     "featured": false
   },
   {
     "title": "Spirits Campaign",
     "category": "Commercial",
     "image": "/assets/images/work/spirits/01.jpg",
-    "href": "/work/spirits.html",
+    "href": "/work/spirits",
     "featured": false
   },
   {
     "title": "Entertainment & Music Industry",
     "category": "Music & Culture",
     "image": "/assets/images/work/entertainment/01.jpg",
-    "href": "/work/entertainment.html",
+    "href": "/work/entertainment",
     "featured": false
   },
   {
     "title": "Lifestyle & Editorial",
     "category": "Photography",
     "image": "/assets/images/work/lifestyle/01.jpg",
-    "href": "/work/lifestyle.html",
+    "href": "/work/lifestyle",
     "featured": false
   },
   {
     "title": "Corporate Headshots",
     "category": "Photography",
     "image": "/assets/images/work/headshots/01.jpg",
-    "href": "/work/headshots.html",
+    "href": "/work/headshots",
     "featured": false
   }
 ]

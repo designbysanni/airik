@@ -1,0 +1,26 @@
+# Clean URLs: airikart.com/work instead of airikart.com/work.html.
+# Requires Apache mod_rewrite — true for Hostinger shared hosting by
+# default. Nothing here needs a build step or touches the .html files
+# themselves; it's purely a serving-layer rewrite.
+
+RewriteEngine On
+
+# 1. Canonical redirect: anyone hitting /page.html directly (old bookmark,
+#    external link, search engine that indexed it before this change) gets
+#    a permanent redirect to the clean /page URL, so there's exactly one
+#    canonical URL per page. Uses THE_REQUEST (the client's original
+#    request line), not REQUEST_URI, so this can't loop with rule 3 below
+#    even though rule 3 rewrites the same request internally afterward.
+RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# 2. /index -> / (avoid a second canonical URL for the homepage existing).
+RewriteRule ^index/?$ / [R=301,L]
+
+# 3. Internally serve the real .html file for the extension-less request,
+#    without changing what's in the browser's address bar. Only applies
+#    when a matching .html file actually exists on disk, so this doesn't
+#    swallow requests for images, work/<slug> subfolders, etc.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]

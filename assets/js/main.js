@@ -27,10 +27,13 @@ function loadPartials() {
 }
 
 function highlightActiveNav() {
-  const current = window.location.pathname.replace(/\/index\.html$/, "/").replace(/\.html$/, "");
+  // Clean URLs now (see .htaccess), but strip .html/trailing slash anyway
+  // so this still matches correctly for anyone hitting an old bookmarked
+  // .html URL before its 301 redirect completes.
+  const current = window.location.pathname.replace(/\.html$/, "").replace(/(.)\/$/, "$1");
   document.querySelectorAll(".main-nav a").forEach((link) => {
     const href = link.getAttribute("href").replace(/\.html$/, "");
-    if (href === current || (current === "/" && href === "/index")) link.classList.add("active");
+    if (href === current) link.classList.add("active");
   });
 }
 
@@ -122,7 +125,7 @@ function renderWorkGrid(grid, items) {
   grid.innerHTML = items
     .map(
       (item) => `
-      <a class="media-card reveal is-visible" href="${item.href || "/work/template.html"}">
+      <a class="media-card reveal is-visible" href="${item.href || "/work/template"}">
         ${item.image ? `<img src="${item.image}" alt="${item.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Image pending<br>${item.title}</div>`}
         <div class="caption">
           <span class="eyebrow">${item.category}</span>

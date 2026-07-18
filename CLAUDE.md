@@ -274,8 +274,42 @@ not something a sender can force outright, so don't oversell that part).
 Exact prompts for GHL's AI workflow builder were provided to Sanni in chat
 when this was built; regenerate similar ones if these need to be rebuilt.
 
+## Clean URLs (no `.html` in links)
+
+Every internal link site-wide (nav, footer, page-to-page CTAs, `data/work.json`
+hrefs, `sitemap.xml`, `og:url` tags) uses the extensionless form —
+`/work`, `/work/kwame-kruma`, `/` for home — not `/work.html`. The actual
+files on disk are still real `.html` files (`work.html`,
+`work/kwame-kruma.html`, `index.html`); only how they're *linked to and
+requested* changed. **When adding a new page, always link to it without
+`.html`** to stay consistent, even though the file itself still needs the
+`.html` extension.
+
+Two server configs make the extensionless URLs actually resolve, since a
+plain static file server has no way to know `/work` means `work.html`:
+- `.htaccess` (Hostinger/Apache) — internally serves the matching `.html`
+  file for an extensionless request, and 301-redirects anyone who hits the
+  old `/page.html` form to the clean URL (so old bookmarks/backlinks still
+  work, and there's exactly one canonical URL per page for SEO).
+- `vercel.json` (`"cleanUrls": true`) — Vercel's native equivalent, so the
+  Vercel preview link behaves the same way.
+
+**This can only be verified against a real Apache/Vercel deploy** — the
+local Python test server (`python -m http.server`, used throughout this
+project for quick local checks) doesn't process `.htaccess` at all, so
+`/work` will 404 locally even though it resolves correctly once deployed.
+Don't mistake that local 404 for a real bug; test clean URLs against the
+live Vercel or Hostinger URL instead.
+
+One exception, deliberately unaffected: `fetch("/partials/header.html")` /
+`fetch("/partials/footer.html")` in `main.js`, and the file-naming
+instructions inside `work/template.html` — those are real file paths (JS
+fetching an include, or a comment describing what filename to create),
+not browser-navigated page URLs, so they correctly still say `.html`.
+
 ## Deployment target
 
 Hostinger shared hosting, static files + one PHP endpoint (`api/submit-lead.php`),
-git-deployed. No Node/build step on the server. See
-README.md for the exact upload steps and local preview instructions.
+git-deployed, plus `.htaccess` for clean URLs (see above). No Node/build
+step on the server. See README.md for the exact upload steps and local
+preview instructions.
