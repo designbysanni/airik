@@ -77,5 +77,45 @@
     "image": "/assets/images/work/lifestyle/01-thumb.jpg",
     "href": "/work/lifestyle",
     "featured": false
+  },
+  {
+    "title": "Born A Legend: 33rd — The Documentary",
+    "category": "Music & Culture",
+    "image": "",
+    "href": "/work/born-a-legend",
+    "featured": false,
+    "note": "Added 2026-07-20 from a real video found on Airik's YouTube channel (fxq9grwz_MM), confirmed via oEmbed. Client's revision letter named this project explicitly. No photos exist yet — image left empty so the grid shows the standard 'Image pending' placeholder rather than a fabricated photo."
+  },
+  {
+    "title": "1865 Fest",
+    "category": "Music & Culture",
+    "image": "",
+    "href": "/work/1865-fest",
+    "featured": false,
+    "note": "Added 2026-07-20 from real videos on Airik's YouTube channel (WiK9MW-gmrs, MYw8oD-ntXk), confirmed via oEmbed. Client's revision letter named this project explicitly. No photos exist yet."
+  },
+  {
+    "title": "Sankofa Village Wellness Center — Grand Opening",
+    "category": "Community & Wellness",
+    "image": "",
+    "href": "/work/sankofa",
+    "featured": false,
+    "note": "Added 2026-07-20 from a real video found on Airik's YouTube channel (De6E6Sr_5m8), confirmed via oEmbed. Matches a real project listed on Airik's portfolio site. No photos exist yet."
+  },
+  {
+    "title": "A Greater Good Foundation: Let's Grow Fest",
+    "category": "Community & Wellness",
+    "image": "",
+    "href": "/work/lets-grow-fest",
+    "featured": false,
+    "note": "Added 2026-07-20 from real videos on Airik's YouTube channel (_2lpS0xo7cw, c74-5sBQPCM), confirmed via oEmbed. Matches a real project listed on Airik's portfolio site. No photos exist yet."
+  },
+  {
+    "title": "The Devine Feminine",
+    "category": "Commercials",
+    "image": "",
+    "href": "/work/devine-feminine",
+    "featured": false,
+    "note": "Added 2026-07-20 from a real video found on Airik's YouTube channel (ZWkrkIxEbBA, 'DIVIN9 FEM COMMERCIAL'), confirmed via oEmbed. Matches a real project listed on Airik's portfolio site under Commercials — previously flagged as possibly the same client as Kinky Behavior but confirmed here as a separate, distinct project. No photos exist yet."
   }
 ]
