@@ -5,6 +5,14 @@
 
 RewriteEngine On
 
+# Old slugs from before Revision Round 1 (renamed/removed 2026-07-20).
+# Redirect rather than 404 — these may already be indexed by search
+# engines or bookmarked from the first version of the site.
+RewriteRule ^work/kinki-behavior/?$ /work/kinky-behavior [R=301,L,NC]
+RewriteRule ^work/us-cellular/?$ /work [R=301,L,NC]
+RewriteRule ^work/headshots/?$ /work [R=301,L,NC]
+RewriteRule ^work/documentary/?$ /work/community [R=301,L,NC]
+
 # work.html and the work/ folder (project detail pages) share the name
 # "work" — Apache's own mod_dir would otherwise auto-redirect a bare
 # /work request to /work/ (treating it as the directory) before rule 3

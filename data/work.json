@@ -2,14 +2,14 @@
   {
     "title": "Sports & Athletics",
     "category": "Sports",
-    "image": "/assets/images/work/sports/dj-moore-01.jpg",
+    "image": "/assets/images/work/sports/dj-moore-01-thumb.jpg",
     "href": "/work/sports",
     "featured": true
   },
   {
     "title": "T-Mobile: Take Over The Streetz",
     "category": "Music & Culture",
-    "image": "/assets/images/work/t-mobile-streetz/01.jpg",
+    "image": "/assets/images/work/t-mobile-streetz/01-thumb.jpg",
     "href": "/work/t-mobile-streetz",
     "categoryHref": "/work?category=Music%20%26%20Culture",
     "featured": true,
@@ -18,63 +18,63 @@
   {
     "title": "Kwame & Kruma — Hat Campaign",
     "category": "Commercials",
-    "image": "/assets/images/work/kwame-kruma/01.jpg",
+    "image": "/assets/images/work/kwame-kruma/01-thumb.jpg",
     "href": "/work/kwame-kruma",
     "featured": false
   },
   {
     "title": "Kinky Behavior — Goddess Campaign",
     "category": "Commercials",
-    "image": "/assets/images/work/kinky-behavior/01.jpg",
+    "image": "/assets/images/work/kinky-behavior/01-thumb.jpg",
     "href": "/work/kinky-behavior",
     "featured": true
   },
   {
     "title": "Dodge Charger Campaign",
     "category": "Commercials",
-    "image": "/assets/images/work/cars/01.jpg",
+    "image": "/assets/images/work/cars/01-thumb.jpg",
     "href": "/work/cars",
     "featured": false
   },
   {
     "title": "Product Photography",
     "category": "Commercials",
-    "image": "/assets/images/work/product/01.jpg",
+    "image": "/assets/images/work/product/01-thumb.jpg",
     "href": "/work/product",
     "featured": false
   },
   {
     "title": "Swishers Campaign",
     "category": "Commercials",
-    "image": "/assets/images/work/swishers/01.jpg",
+    "image": "/assets/images/work/swishers/01-thumb.jpg",
     "href": "/work/swishers",
     "featured": false
   },
   {
     "title": "Spirits Campaign",
     "category": "Commercials",
-    "image": "/assets/images/work/spirits/01.jpg",
+    "image": "/assets/images/work/spirits/01-thumb.jpg",
     "href": "/work/spirits",
     "featured": false
   },
   {
     "title": "Community & Wellness",
     "category": "Community & Wellness",
-    "image": "/assets/images/work/community/01.jpg",
+    "image": "/assets/images/work/community/01-thumb.jpg",
     "href": "/work/community",
     "featured": false
   },
   {
     "title": "Entertainment & Music Industry",
     "category": "Music & Culture",
-    "image": "/assets/images/work/entertainment/01.jpg",
+    "image": "/assets/images/work/entertainment/01-thumb.jpg",
     "href": "/work/entertainment",
     "featured": false
   },
   {
     "title": "Lifestyle & Editorial",
     "category": "Photography",
-    "image": "/assets/images/work/lifestyle/01.jpg",
+    "image": "/assets/images/work/lifestyle/01-thumb.jpg",
     "href": "/work/lifestyle",
     "featured": false
   }

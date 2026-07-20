@@ -1,4 +1,10 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/work/kinki-behavior", "destination": "/work/kinky-behavior", "permanent": true },
+    { "source": "/work/us-cellular", "destination": "/work", "permanent": true },
+    { "source": "/work/headshots", "destination": "/work", "permanent": true },
+    { "source": "/work/documentary", "destination": "/work/community", "permanent": true }
+  ]
 }
