@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initClientsList();
   initTestimonials();
   initInquiryForms();
-  initVideoFacades();
   initVideoCarousels();
 });
 
@@ -268,24 +267,6 @@ function initTestimonials() {
     .catch(() => {
       el.innerHTML = "<p>Testimonials could not be loaded.</p>";
     });
-}
-
-/* Video embeds: click-to-play facade. Markup is
-   <div class="video-embed" data-yt-facade="VIDEO_ID" data-yt-title="...">
-   with no <iframe> until clicked — see the CSS comment on .video-embed-poster
-   for why this exists. -------------------------------------------------- */
-function initVideoFacades() {
-  document.querySelectorAll("[data-yt-facade]").forEach((el) => {
-    const videoId = el.dataset.ytFacade;
-    const title = el.dataset.ytTitle || "Video";
-    const play = () => {
-      el.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1" title="${title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-    };
-    const playBtn = el.querySelector(".video-embed-play");
-    if (playBtn) playBtn.addEventListener("click", play, { once: true });
-    const poster = el.querySelector(".video-embed-poster");
-    if (poster) poster.addEventListener("click", play, { once: true });
-  });
 }
 
 /* Video carousel: wraps every .video-grid (multiple videos on one project)
