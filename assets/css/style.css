@@ -334,13 +334,13 @@ blockquote.card { margin: 0; display: grid; gap: var(--space-1); }
   scrollbar-width: none;
 }
 .video-grid::-webkit-scrollbar { display: none; }
-/* 4 cards at this width + gap fit in one row without scrolling on a normal
-   desktop viewport (container inner width ~1200-1272px) — up to 4 videos
-   line up left-to-right with no carousel needed; 5+ (see Sports) overflows
-   and the arrows take over. */
-.video-grid > div { flex: 0 0 280px; scroll-snap-align: start; }
+/* Sized so exactly 3 cards fit one row on a normal desktop viewport
+   (container inner width ~1200-1272px: 3×340 + 2×20 = 1060px, comfortably
+   inside) but a 4th does not (4×340 + 3×20 = 1420px > container) — Sports'
+   5 videos shows 3 up front, arrows reveal the remaining 2. */
+.video-grid > div { flex: 0 0 340px; scroll-snap-align: start; }
 .video-carousel-arrow {
-  position: absolute; top: 79px; transform: translateY(-50%);
+  position: absolute; top: 96px; transform: translateY(-50%);
   width: 40px; height: 40px; border-radius: 50%;
   background: var(--aaec-black); border: 1px solid var(--aaec-line); color: var(--aaec-white);
   display: flex; align-items: center; justify-content: center; cursor: pointer;
