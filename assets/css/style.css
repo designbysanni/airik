@@ -313,13 +313,14 @@ blockquote.card { margin: 0; display: grid; gap: var(--space-1); }
    work at every viewport (mobile full-width down to desktop grid columns),
    no padding-hack needed. max-width caps it at ~60% of full container width
    (was 960px/full-bleed) so a single embed doesn't dominate the viewport on
-   desktop; margin:auto centers it when it's alone in a wider container. In a
-   grid (multiple videos on one project), wrap the grid itself in a narrower
-   container instead of relying on this alone — see .video-grid below. */
-.video-embed { position: relative; width: 100%; max-width: 576px; margin: 0 auto; aspect-ratio: 16/9; background: #000; overflow: hidden; border: 1px solid var(--aaec-line); }
+   desktop; left-aligned (margin: 0) rather than centered, to match the rest
+   of the page's left-aligned text/heading rhythm. In a grid (multiple videos
+   on one project), wrap the grid itself in a narrower container instead of
+   relying on this alone — see .video-grid below. */
+.video-embed { position: relative; width: 100%; max-width: 576px; margin: 0; aspect-ratio: 16/9; background: #000; overflow: hidden; border: 1px solid var(--aaec-line); }
 .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .video-embed-caption { margin-top: 0.6rem; }
-.video-grid { max-width: 800px; margin: 0 auto; }
+.video-grid { max-width: 800px; margin: 0; }
 
 /* Click-to-play facade -------------------------------------------------------
    YouTube's embedded player loads a heavy JS bundle the moment an <iframe> is
