@@ -329,14 +329,18 @@ blockquote.card { margin: 0; display: grid; gap: var(--space-1); }
    children, no manual markup for the buttons. */
 .video-carousel { position: relative; }
 .video-grid {
-  display: flex; gap: var(--space-3); margin: 0; max-width: 100%;
+  display: flex; gap: 1.25rem; margin: 0; max-width: 100%;
   overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
   scrollbar-width: none;
 }
 .video-grid::-webkit-scrollbar { display: none; }
-.video-grid > div { flex: 0 0 300px; scroll-snap-align: start; }
+/* 4 cards at this width + gap fit in one row without scrolling on a normal
+   desktop viewport (container inner width ~1200-1272px) — up to 4 videos
+   line up left-to-right with no carousel needed; 5+ (see Sports) overflows
+   and the arrows take over. */
+.video-grid > div { flex: 0 0 280px; scroll-snap-align: start; }
 .video-carousel-arrow {
-  position: absolute; top: 84px; transform: translateY(-50%);
+  position: absolute; top: 79px; transform: translateY(-50%);
   width: 40px; height: 40px; border-radius: 50%;
   background: var(--aaec-black); border: 1px solid var(--aaec-line); color: var(--aaec-white);
   display: flex; align-items: center; justify-content: center; cursor: pointer;

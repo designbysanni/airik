@@ -311,7 +311,7 @@ function initVideoCarousels() {
 
     wrapper.append(prevBtn, nextBtn);
 
-    const step = () => (grid.firstElementChild ? grid.firstElementChild.offsetWidth + 24 : 300);
+    const step = () => (grid.firstElementChild ? grid.firstElementChild.offsetWidth + 20 : 280);
 
     const update = () => {
       const maxScroll = grid.scrollWidth - grid.clientWidth;
