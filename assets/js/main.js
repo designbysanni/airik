@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTestimonials();
   initInquiryForms();
   initVideoFacades();
+  initVideoCarousels();
 });
 
 /* Shared header/footer, injected so nav/footer only need editing once ---- */
@@ -284,6 +285,46 @@ function initVideoFacades() {
     if (playBtn) playBtn.addEventListener("click", play, { once: true });
     const poster = el.querySelector(".video-embed-poster");
     if (poster) poster.addEventListener("click", play, { once: true });
+  });
+}
+
+/* Video carousel: wraps every .video-grid (multiple videos on one project)
+   with prev/next arrow buttons and scrolls it horizontally. Cards are a
+   fixed width in CSS, so this only needs to show/hide the arrows based on
+   whether the row actually overflows its container. ------------------------ */
+function initVideoCarousels() {
+  document.querySelectorAll(".video-grid").forEach((grid) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "video-carousel";
+    grid.parentNode.insertBefore(wrapper, grid);
+    wrapper.appendChild(grid);
+
+    const prevBtn = document.createElement("button");
+    prevBtn.type = "button";
+    prevBtn.className = "video-carousel-arrow video-carousel-prev";
+    prevBtn.setAttribute("aria-label", "Previous video");
+
+    const nextBtn = document.createElement("button");
+    nextBtn.type = "button";
+    nextBtn.className = "video-carousel-arrow video-carousel-next";
+    nextBtn.setAttribute("aria-label", "Next video");
+
+    wrapper.append(prevBtn, nextBtn);
+
+    const step = () => (grid.firstElementChild ? grid.firstElementChild.offsetWidth + 24 : 300);
+
+    const update = () => {
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+      wrapper.classList.toggle("has-overflow", maxScroll > 4);
+      prevBtn.classList.toggle("is-hidden", grid.scrollLeft <= 4);
+      nextBtn.classList.toggle("is-hidden", grid.scrollLeft >= maxScroll - 4);
+    };
+
+    prevBtn.addEventListener("click", () => grid.scrollBy({ left: -step(), behavior: "smooth" }));
+    nextBtn.addEventListener("click", () => grid.scrollBy({ left: step(), behavior: "smooth" }));
+    grid.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
   });
 }
 
