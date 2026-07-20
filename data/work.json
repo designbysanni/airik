@@ -1,79 +1,67 @@
 [
   {
-    "title": "Kwame & Kruma — Hat Campaign",
-    "category": "Music & Culture",
-    "image": "/assets/images/work/kwame-kruma/01.jpg",
-    "href": "/work/kwame-kruma",
-    "featured": true
-  },
-  {
     "title": "Sports & Athletics",
     "category": "Sports",
-    "image": "/assets/images/work/sports/01.jpg",
+    "image": "/assets/images/work/sports/dj-moore-01.jpg",
     "href": "/work/sports",
     "featured": true
   },
   {
-    "title": "Kinki Behavior — Goddess Campaign",
-    "category": "Commercial",
-    "image": "/assets/images/work/kinki-behavior/01.jpg",
-    "href": "/work/kinki-behavior",
+    "title": "T-Mobile: Take Over The Streetz",
+    "category": "Music & Culture",
+    "image": "/assets/images/work/t-mobile-streetz/01.jpg",
+    "href": "/work/t-mobile-streetz",
+    "categoryHref": "/work?category=Music%20%26%20Culture",
+    "featured": true,
+    "note": "On the Home page featured grid, this card links to the full Music & Culture collection (via categoryHref) per client request, not to this single project. Client asked for a Kid Breeze image specifically if available — no Kid Breeze photos were in the PHOTOGRAPHY export, so this uses the strongest available real Music & Culture image instead. Swap image/categoryHref target once Kid Breeze media is provided."
+  },
+  {
+    "title": "Kwame & Kruma — Hat Campaign",
+    "category": "Commercials",
+    "image": "/assets/images/work/kwame-kruma/01.jpg",
+    "href": "/work/kwame-kruma",
+    "featured": false
+  },
+  {
+    "title": "Kinky Behavior — Goddess Campaign",
+    "category": "Commercials",
+    "image": "/assets/images/work/kinky-behavior/01.jpg",
+    "href": "/work/kinky-behavior",
     "featured": true
   },
   {
     "title": "Dodge Charger Campaign",
-    "category": "Commercial",
+    "category": "Commercials",
     "image": "/assets/images/work/cars/01.jpg",
     "href": "/work/cars",
     "featured": false
   },
   {
     "title": "Product Photography",
-    "category": "Commercial",
+    "category": "Commercials",
     "image": "/assets/images/work/product/01.jpg",
     "href": "/work/product",
     "featured": false
   },
   {
-    "title": "Preserving Culture — A Documentary Short",
-    "category": "Documentary",
-    "image": "/assets/images/work/community/01.jpg",
-    "href": "/work/documentary",
-    "featured": false
-  },
-  {
-    "title": "Community & Culture",
-    "category": "Community",
-    "image": "/assets/images/work/community/01.jpg",
-    "href": "/work/community",
-    "featured": false
-  },
-  {
-    "title": "T-Mobile: Take Over The Streetz",
-    "category": "Events",
-    "image": "/assets/images/work/t-mobile-streetz/01.jpg",
-    "href": "/work/t-mobile-streetz",
-    "featured": false
-  },
-  {
-    "title": "U.S. Cellular Campaign",
-    "category": "Commercial",
-    "image": "/assets/images/work/us-cellular/01.jpg",
-    "href": "/work/us-cellular",
-    "featured": false
-  },
-  {
     "title": "Swishers Campaign",
-    "category": "Commercial",
+    "category": "Commercials",
     "image": "/assets/images/work/swishers/01.jpg",
     "href": "/work/swishers",
     "featured": false
   },
   {
     "title": "Spirits Campaign",
-    "category": "Commercial",
+    "category": "Commercials",
     "image": "/assets/images/work/spirits/01.jpg",
     "href": "/work/spirits",
+    "featured": false
+  },
+  {
+    "title": "Community & Wellness",
+    "category": "Community & Wellness",
+    "image": "/assets/images/work/community/01.jpg",
+    "href": "/work/community",
     "featured": false
   },
   {
@@ -88,13 +76,6 @@
     "category": "Photography",
     "image": "/assets/images/work/lifestyle/01.jpg",
     "href": "/work/lifestyle",
-    "featured": false
-  },
-  {
-    "title": "Corporate Headshots",
-    "category": "Photography",
-    "image": "/assets/images/work/headshots/01.jpg",
-    "href": "/work/headshots",
     "featured": false
   }
 ]

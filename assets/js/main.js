@@ -106,10 +106,26 @@ function initWorkFilters() {
     .then((res) => res.json())
     .then((items) => {
       const initial = featuredOnly ? items.filter((i) => i.featured) : items;
-      renderWorkGrid(grid, initial);
+      renderWorkGrid(grid, initial, featuredOnly);
 
       const filterBar = document.querySelector("[data-filter-bar]");
       if (!filterBar) return;
+
+      // Supports /work?category=Music%20%26%20Culture deep links (used by the
+      // Home page's Music & Culture featured card, which opens the full
+      // collection instead of a single project) by pre-selecting that filter.
+      const requestedCategory = new URLSearchParams(window.location.search).get("category");
+      if (requestedCategory) {
+        const matchingBtn = [...filterBar.querySelectorAll(".filter-btn")].find(
+          (b) => b.dataset.category === requestedCategory
+        );
+        if (matchingBtn) {
+          filterBar.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+          matchingBtn.classList.add("active");
+          renderWorkGrid(grid, items.filter((i) => i.category === requestedCategory));
+        }
+      }
+
       filterBar.addEventListener("click", (e) => {
         const btn = e.target.closest(".filter-btn");
         if (!btn) return;
@@ -125,23 +141,27 @@ function initWorkFilters() {
     });
 }
 
-function renderWorkGrid(grid, items) {
+function renderWorkGrid(grid, items, featuredOnly) {
   if (!items.length) {
     grid.innerHTML = "<p>No projects in this category yet.</p>";
     return;
   }
   grid.innerHTML = items
-    .map(
-      (item) => `
-      <a class="media-card reveal is-visible" href="${item.href || "/work/template"}">
+    .map((item) => {
+      // On the Home page's featured grid, a "categoryHref" lets a card open the
+      // full category collection on /work instead of a single project page.
+      const href = (featuredOnly && item.categoryHref) || item.href || "/work/template";
+      const linkLabel = featuredOnly && item.categoryHref ? "View Collection →" : "View Project →";
+      return `
+      <a class="media-card reveal is-visible" href="${href}">
         ${item.image ? `<img src="${item.image}" alt="${item.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Image pending<br>${item.title}</div>`}
         <div class="caption">
           <span class="eyebrow">${item.category}</span>
           <h4>${item.title}</h4>
-          <span class="view-link">View Project →</span>
+          <span class="view-link">${linkLabel}</span>
         </div>
-      </a>`
-    )
+      </a>`;
+    })
     .join("");
 }
 
