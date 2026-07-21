@@ -215,6 +215,14 @@ section:first-of-type, .hero + section { border-top: none; }
   font-family: var(--font-structural); letter-spacing: 0.15em; text-transform: uppercase;
   color: var(--aaec-silver); font-size: 0.75rem; text-align: center; padding: var(--space-2);
 }
+/* Team members without a photo on file yet: an initials monogram on the
+   brand gradient, not a stock photo standing in for a real person's
+   likeness, and not a plain "pending" box either. */
+.placeholder-monogram {
+  background: linear-gradient(160deg, rgba(176,21,27,0.55), var(--aaec-black-soft) 70%);
+  font-family: var(--font-display); letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--aaec-white); font-size: 3rem;
+}
 .media-card .caption {
   position: absolute; left: 0; right: 0; bottom: 0; padding: var(--space-2);
   background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);

@@ -166,6 +166,20 @@ function renderWorkGrid(grid, items, featuredOnly) {
     .join("");
 }
 
+/* Branded placeholder for a team member with no photo on file yet: an
+   initials monogram on the brand's red/black gradient, rather than a plain
+   "pending" box — or worse, a stock photo of an unrelated person standing
+   in for a real, named team member's likeness. -------------------------- */
+function initialsAvatar(name) {
+  const initials = name
+    .split(/\s+/)
+    .map((p) => p[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  return `<div class="placeholder placeholder-monogram">${initials}</div>`;
+}
+
 /* About page: load /data/team.json, render team grid + clickable modal
    with portrait, bio, role, expertise, and related work (per brief). ------ */
 function initTeamModal() {
@@ -181,7 +195,7 @@ function initTeamModal() {
           (m, i) => `
         <button class="team-member reveal is-visible" type="button" data-index="${i}">
           <div class="media-card">
-            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
+            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : initialsAvatar(m.name)}
           </div>
           <h4>${m.name}</h4>
           <span class="role">${m.role}</span>
@@ -204,7 +218,7 @@ function initTeamModal() {
           : "";
         overlay.querySelector("[data-modal-body]").innerHTML = `
           <div class="media-card" style="aspect-ratio:1/1;max-width:220px;margin-bottom:1.5rem;">
-            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : `<div class="placeholder">Portrait pending</div>`}
+            ${m.photo ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">` : initialsAvatar(m.name)}
           </div>
           <h3>${m.name}</h3>
           <span class="role">${m.role}</span>

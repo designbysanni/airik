@@ -2,24 +2,80 @@
   {
     "title": "Sports & Athletics",
     "category": "Sports",
-    "image": "/assets/images/work/sports/dj-moore-01-thumb.jpg",
+    "image": "/assets/images/work/sports/dj-moore-03-thumb.jpg",
     "href": "/work/sports",
+    "featured": false
+  },
+  {
+    "title": "Under Armour All America",
+    "category": "Sports",
+    "image": "/assets/images/work/under-armour/cover-thumb.jpg",
+    "href": "/work/under-armour",
+    "featured": false
+  },
+  {
+    "title": "Nike Women: The Power of Presence",
+    "category": "Sports",
+    "image": "/assets/images/work/nike-women/cover-thumb.jpg",
+    "href": "/work/nike-women",
     "featured": true
   },
   {
     "title": "Metro By T-Mobile: Voice of The Streetz",
     "category": "Music & Culture",
-    "image": "/assets/images/work/t-mobile-streetz/01-thumb.jpg",
+    "image": "/assets/images/work/t-mobile-streetz/cover-thumb.jpg",
     "href": "/work/t-mobile-streetz",
     "categoryHref": "/work?category=Music%20%26%20Culture",
     "featured": true,
-    "note": "On the Home page featured grid, this card links to the full Music & Culture collection (via categoryHref) per client request, not to this single project. Client asked for a Kid Breeze image specifically if available — no Kid Breeze photos were in the PHOTOGRAPHY export, so this uses the strongest available real Music & Culture image instead. Swap image/categoryHref target once Kid Breeze media is provided."
+    "note": "On the Home page featured grid, this card links to the full Music & Culture collection (via categoryHref) per client request, not to this single project."
   },
   {
-    "title": "Kwame & Kruma — Hat Campaign",
+    "title": "1865 Fest",
+    "category": "Music & Culture",
+    "image": "/assets/images/work/1865-fest/cover-thumb.jpg",
+    "href": "/work/1865-fest",
+    "featured": false
+  },
+  {
+    "title": "Born A Legend: 33rd — The Documentary",
+    "category": "Music & Culture",
+    "image": "/assets/images/work/born-a-legend/cover-thumb.jpg",
+    "href": "/work/born-a-legend",
+    "featured": false
+  },
+  {
+    "title": "For Di Gyal Dem: Rooftop Brunch",
+    "category": "Music & Culture",
+    "image": "/assets/images/work/rooftop-brunch/01.jpg",
+    "href": "/work/rooftop-brunch",
+    "featured": false
+  },
+  {
+    "title": "Galleria From The Living Room",
+    "category": "Music & Culture",
+    "image": "/assets/images/work/galleria/cover-thumb.jpg",
+    "href": "/work/galleria",
+    "featured": false
+  },
+  {
+    "title": "Music Video Archive",
+    "category": "Music & Culture",
+    "image": "",
+    "href": "/work/music-video-archive",
+    "featured": false
+  },
+  {
+    "title": "Kwame N Kruma: Men's Fashion",
     "category": "Commercials",
-    "image": "/assets/images/work/kwame-kruma/01-thumb.jpg",
+    "image": "/assets/images/work/kwame-kruma/cover-thumb.jpg",
     "href": "/work/kwame-kruma",
+    "featured": false
+  },
+  {
+    "title": "The Devine Feminine",
+    "category": "Commercials",
+    "image": "/assets/images/work/devine-feminine/cover-thumb.jpg",
+    "href": "/work/devine-feminine",
     "featured": false
   },
   {
@@ -27,24 +83,31 @@
     "category": "Commercials",
     "image": "/assets/images/work/kinky-behavior/01-thumb.jpg",
     "href": "/work/kinky-behavior",
-    "featured": true
+    "featured": false
   },
   {
-    "title": "Dodge Campaign",
+    "title": "Dodge: Up For The Challenge",
     "category": "Commercials",
-    "image": "/assets/images/work/cars/01-thumb.jpg",
+    "image": "/assets/images/work/cars/cover-thumb.jpg",
     "href": "/work/cars",
     "featured": false
   },
   {
-    "title": "Product Photography",
+    "title": "Kohl's Jewelers Diamond Commercial",
     "category": "Commercials",
-    "image": "/assets/images/work/product/01-thumb.jpg",
-    "href": "/work/product",
+    "image": "",
+    "href": "/work/kohls-jewelers",
     "featured": false
   },
   {
-    "title": "Swishers Campaign",
+    "title": "Prime Tacos x Food Network",
+    "category": "Commercials",
+    "image": "/assets/images/work/prime-tacos/01.jpg",
+    "href": "/work/prime-tacos",
+    "featured": false
+  },
+  {
+    "title": "Swisher Sweets: Breeze",
     "category": "Commercials",
     "image": "/assets/images/work/swishers/01-thumb.jpg",
     "href": "/work/swishers",
@@ -58,24 +121,66 @@
     "featured": false
   },
   {
-    "title": "Community & Wellness",
+    "title": "Bears x Plant-Based Afrikan: Plants on the Gridiron",
     "category": "Community & Wellness",
-    "image": "/assets/images/work/community/01-thumb.jpg",
+    "image": "/assets/images/work/community/cover-thumb.jpg",
     "href": "/work/community",
     "featured": false
   },
   {
-    "title": "Entertainment & Music Industry",
-    "category": "Music & Culture",
-    "image": "/assets/images/work/entertainment/01-thumb.jpg",
-    "href": "/work/entertainment",
+    "title": "Sankofa Village Wellness Center — Grand Opening",
+    "category": "Community & Wellness",
+    "image": "/assets/images/work/sankofa/cover-thumb.jpg",
+    "href": "/work/sankofa",
+    "featured": false
+  },
+  {
+    "title": "A Greater Good Foundation: Let's Grow Fest",
+    "category": "Community & Wellness",
+    "image": "",
+    "href": "/work/lets-grow-fest",
+    "featured": false
+  },
+  {
+    "title": "Chicago Park District: TRACE",
+    "category": "Community & Wellness",
+    "image": "/assets/images/work/trace/01.jpg",
+    "href": "/work/trace",
+    "featured": false
+  },
+  {
+    "title": "The Guest House Chicago: It's A Marathon",
+    "category": "Community & Wellness",
+    "image": "",
+    "href": "/work/guest-house",
+    "featured": false
+  },
+  {
+    "title": "Career Day at Community Elementary School",
+    "category": "Community & Wellness",
+    "image": "/assets/images/work/career-day/01.jpg",
+    "href": "/work/career-day",
     "featured": false
   },
   {
     "title": "Lifestyle & Editorial",
     "category": "Photography",
-    "image": "/assets/images/work/lifestyle/01-thumb.jpg",
+    "image": "/assets/images/work/lifestyle/cover-thumb.jpg",
     "href": "/work/lifestyle",
+    "featured": true
+  },
+  {
+    "title": "Product Photography",
+    "category": "Photography",
+    "image": "/assets/images/work/product/cover-thumb.jpg",
+    "href": "/work/product",
+    "featured": true
+  },
+  {
+    "title": "Concept Shoots: Prada Editorial",
+    "category": "Photography",
+    "image": "/assets/images/work/concept-shoots/01.jpg",
+    "href": "/work/concept-shoots",
     "featured": false
   }
 ]
