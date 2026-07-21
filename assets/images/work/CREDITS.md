@@ -42,19 +42,41 @@ screenshots of what looked like in-progress video edits, not finished
 photography) — that's an honest gap, not a bug, until better source photos
 turn up.
 
-## Videos
+## Videos (superseded — see below)
 
-The 9 YouTube videos (all from the AIRIK ART & ENT CO channel, confirmed via
-oEmbed) were placed on the project page matching their subject:
+The note below is from the original 2026-07-18 pass and is now stale (pages
+have since been renamed/merged/split). Kept for history; don't trust the
+specific filenames. Current video placement per page is hand-authored
+directly in each `/work/<slug>.html` — check the page itself, not this file.
 
-- Dodge Charger Commercial → `/work/cars.html`
-- Kinki Behavior Goddess Commercial → `/work/kinki-behavior.html`
-- KK Hat Commercial → `/work/kwame-kruma.html`
-- Kohl's Jewelers Diamond Commercial → `/work/product.html`
-- Documentary — Scene 7: Community → `/work/documentary.html`
-- Owen Pappoe (player feature), Gatorade UA All America Game Recap, Fort
-  Myers Holiday Basketball Tournament Recap, American Family Insurance 3PT
-  Shootout & Slam Dunk Contest Promo → all four on `/work/sports.html`
+## Round 2 (2026-07): real portfolio sourcing + 4 stock photos
+
+Most new/rebuilt project pages added in Revision Round 2 use real images,
+copy, and video sourced directly from Airik's own portfolio site
+(ericcrawford.myportfolio.com) — downloaded via its CDN, resized the same
+way as the PHOTOGRAPHY export (1600px long edge, JPEG q82). These live in
+folders named after the project (`under-armour/`, `nike-women/`,
+`devine-feminine/`, `sankofa/`, `1865-fest/`, `born-a-legend/`,
+`rooftop-brunch/`, `galleria/`, `trace/`, `career-day/`, `concept-shoots/`,
+`pf-*.jpg` files inside existing folders like `cars/`, `community/`,
+`kwame-kruma/`, `product/`, `lifestyle/`, `t-mobile-streetz/`, `lftlr/`).
+
+Four projects had **no usable image** anywhere in the portfolio export
+(confirmed by checking the matching portfolio page directly) — these use a
+single real, commercially-licensed (CC BY 2.0) Flickr stock photo each,
+thematically matched to the project subject, instead of a fabricated AAEC
+production photo or a visible "image pending" placeholder:
+
+| Project | File | Title | Author | License |
+|---|---|---|---|---|
+| Kohl's Jewelers Diamond Commercial | `kohls-jewelers/01.jpg` | [Diamond ring](https://www.flickr.com/photos/85473033@N00/263628038) | AMagill | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| Music Video Archive | `music-video-archive/01.jpg` | [Vocal Microphone](https://www.flickr.com/photos/40959269@N05/3772473532) | SimonDeanMedia | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| The Guest House Chicago: It's A Marathon | `guest-house/02.jpg` | [Finish: Athlone Flatline Half Marathon 2014](https://www.flickr.com/photos/25874444@N00/15038969318) | Peter Mooney | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| A Greater Good Foundation: Let's Grow Fest | `lets-grow-fest/01.jpg` | [Wayne C Henderson Music Festival and Guitar Competition 2014](https://www.flickr.com/photos/37922399@N05/14489096085) | vastateparksstaff | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+
+If Airik has real photos for any of these four, swap the file in directly
+(same filename) — this stock fallback stops being needed the moment real
+media exists.
 
 ## LFTLR
 

@@ -4,14 +4,7 @@
     "category": "Sports",
     "image": "/assets/images/work/sports/dj-moore-03-thumb.jpg",
     "href": "/work/sports",
-    "featured": false
-  },
-  {
-    "title": "Under Armour All America",
-    "category": "Sports",
-    "image": "/assets/images/work/under-armour/cover-thumb.jpg",
-    "href": "/work/under-armour",
-    "featured": false
+    "featured": true
   },
   {
     "title": "Nike Women: The Power of Presence",
@@ -21,26 +14,18 @@
     "featured": true
   },
   {
+    "title": "Under Armour All America",
+    "category": "Sports",
+    "image": "/assets/images/work/under-armour/cover-thumb.jpg",
+    "href": "/work/under-armour",
+    "featured": false
+  },
+  {
     "title": "Metro By T-Mobile: Voice of The Streetz",
     "category": "Music & Culture",
     "image": "/assets/images/work/t-mobile-streetz/cover-thumb.jpg",
     "href": "/work/t-mobile-streetz",
     "categoryHref": "/work?category=Music%20%26%20Culture",
-    "featured": true,
-    "note": "On the Home page featured grid, this card links to the full Music & Culture collection (via categoryHref) per client request, not to this single project."
-  },
-  {
-    "title": "1865 Fest",
-    "category": "Music & Culture",
-    "image": "/assets/images/work/1865-fest/cover-thumb.jpg",
-    "href": "/work/1865-fest",
-    "featured": false
-  },
-  {
-    "title": "Born A Legend: 33rd — The Documentary",
-    "category": "Music & Culture",
-    "image": "/assets/images/work/born-a-legend/cover-thumb.jpg",
-    "href": "/work/born-a-legend",
     "featured": false
   },
   {
@@ -51,6 +36,20 @@
     "featured": false
   },
   {
+    "title": "1865 Fest",
+    "category": "Music & Culture",
+    "image": "/assets/images/work/1865-fest/cover-thumb.jpg",
+    "href": "/work/1865-fest",
+    "featured": false
+  },
+  {
+    "title": "Music Video Archive",
+    "category": "Music & Culture",
+    "image": "/assets/images/work/music-video-archive/cover-thumb.jpg",
+    "href": "/work/music-video-archive",
+    "featured": false
+  },
+  {
     "title": "Galleria From The Living Room",
     "category": "Music & Culture",
     "image": "/assets/images/work/galleria/cover-thumb.jpg",
@@ -58,32 +57,18 @@
     "featured": false
   },
   {
-    "title": "Music Video Archive",
+    "title": "Born A Legend: 33rd — The Documentary",
     "category": "Music & Culture",
-    "image": "",
-    "href": "/work/music-video-archive",
+    "image": "/assets/images/work/born-a-legend/cover-thumb.jpg",
+    "href": "/work/born-a-legend",
     "featured": false
   },
   {
-    "title": "Kwame N Kruma: Men's Fashion",
-    "category": "Commercials",
-    "image": "/assets/images/work/kwame-kruma/cover-thumb.jpg",
-    "href": "/work/kwame-kruma",
-    "featured": false
-  },
-  {
-    "title": "The Devine Feminine",
-    "category": "Commercials",
-    "image": "/assets/images/work/devine-feminine/cover-thumb.jpg",
-    "href": "/work/devine-feminine",
-    "featured": false
-  },
-  {
-    "title": "Kinky Behavior — Goddess Campaign",
+    "title": "Kinky Behavior: Goddess Campaign x The Devine Feminine",
     "category": "Commercials",
     "image": "/assets/images/work/kinky-behavior/01-thumb.jpg",
     "href": "/work/kinky-behavior",
-    "featured": false
+    "featured": true
   },
   {
     "title": "Dodge: Up For The Challenge",
@@ -93,17 +78,10 @@
     "featured": false
   },
   {
-    "title": "Kohl's Jewelers Diamond Commercial",
+    "title": "Kwame N Kruma: Men's Fashion",
     "category": "Commercials",
-    "image": "",
-    "href": "/work/kohls-jewelers",
-    "featured": false
-  },
-  {
-    "title": "Prime Tacos x Food Network",
-    "category": "Commercials",
-    "image": "/assets/images/work/prime-tacos/01.jpg",
-    "href": "/work/prime-tacos",
+    "image": "/assets/images/work/kwame-kruma/cover-thumb.jpg",
+    "href": "/work/kwame-kruma",
     "featured": false
   },
   {
@@ -121,6 +99,20 @@
     "featured": false
   },
   {
+    "title": "Kohl's Jewelers Diamond Commercial",
+    "category": "Commercials",
+    "image": "/assets/images/work/kohls-jewelers/cover-thumb.jpg",
+    "href": "/work/kohls-jewelers",
+    "featured": false
+  },
+  {
+    "title": "Prime Tacos x Food Network",
+    "category": "Commercials",
+    "image": "/assets/images/work/prime-tacos/01.jpg",
+    "href": "/work/prime-tacos",
+    "featured": false
+  },
+  {
     "title": "Bears x Plant-Based Afrikan: Plants on the Gridiron",
     "category": "Community & Wellness",
     "image": "/assets/images/work/community/cover-thumb.jpg",
@@ -135,10 +127,10 @@
     "featured": false
   },
   {
-    "title": "A Greater Good Foundation: Let's Grow Fest",
+    "title": "Career Day at Community Elementary School",
     "category": "Community & Wellness",
-    "image": "",
-    "href": "/work/lets-grow-fest",
+    "image": "/assets/images/work/career-day/01.jpg",
+    "href": "/work/career-day",
     "featured": false
   },
   {
@@ -151,15 +143,15 @@
   {
     "title": "The Guest House Chicago: It's A Marathon",
     "category": "Community & Wellness",
-    "image": "",
+    "image": "/assets/images/work/guest-house/cover-thumb.jpg",
     "href": "/work/guest-house",
     "featured": false
   },
   {
-    "title": "Career Day at Community Elementary School",
+    "title": "A Greater Good Foundation: Let's Grow Fest",
     "category": "Community & Wellness",
-    "image": "/assets/images/work/career-day/01.jpg",
-    "href": "/work/career-day",
+    "image": "/assets/images/work/lets-grow-fest/cover-thumb.jpg",
+    "href": "/work/lets-grow-fest",
     "featured": false
   },
   {
@@ -167,14 +159,14 @@
     "category": "Photography",
     "image": "/assets/images/work/lifestyle/cover-thumb.jpg",
     "href": "/work/lifestyle",
-    "featured": true
+    "featured": false
   },
   {
     "title": "Product Photography",
     "category": "Photography",
     "image": "/assets/images/work/product/cover-thumb.jpg",
     "href": "/work/product",
-    "featured": true
+    "featured": false
   },
   {
     "title": "Concept Shoots: Prada Editorial",

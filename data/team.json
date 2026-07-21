@@ -6,51 +6,6 @@
     "bio": "Eric Boyd Crawford Jr., professionally known as Airik Crawford, founded AAEC in March 2022. Raised on the West Side of Chicago, he approaches visual storytelling as an artist first, with a background in painting, design, composition, and creative theory from Knox College.",
     "expertise": ["Creative Direction", "Cinematography", "Photography", "Brand Strategy"],
     "relatedWork": [],
-    "note": "photo is Airik's real portrait (from PHOTOGRAPHY/airik.jpg), added 2026-07-18 — replaces the earlier no-face silhouette placeholder. relatedWork is an optional array of {\"title\": ..., \"href\": ...} pairs pointing at /work/<slug>.html pages; the About page modal renders a \"Related Work\" list automatically once this is populated. Leave empty until a specific project should be linked here. The revision letter (2026-07-20) listed 'Eric Crawford (Founder & Creative Director)' as a team member to add — treated as this same person/entry (not a duplicate), since role and founder status match exactly. Flagged to Airik for confirmation rather than silently assumed."
-  },
-  {
-    "name": "Erica",
-    "role": "Director of Communications & Director of Information Technology",
-    "photo": "",
-    "bio": "Bio coming soon.",
-    "expertise": [],
-    "relatedWork": [],
-    "note": "Added per Revision Round 1 (2026-07-20). Name, role confirmed by Airik — photo and bio pending, not fabricated. Last name not provided yet."
-  },
-  {
-    "name": "Aaron Taylor",
-    "role": "Production Assistant",
-    "photo": "",
-    "bio": "Bio coming soon.",
-    "expertise": [],
-    "relatedWork": [],
-    "note": "Added per Revision Round 1 (2026-07-20). Name, role confirmed by Airik — photo and bio pending, not fabricated."
-  },
-  {
-    "name": "Dominique Wells",
-    "role": "Editor-in-Chief",
-    "photo": "",
-    "bio": "Bio coming soon.",
-    "expertise": [],
-    "relatedWork": [],
-    "note": "Added per Revision Round 1 (2026-07-20). Name, role confirmed by Airik — photo and bio pending, not fabricated."
-  },
-  {
-    "name": "Javaris Grant",
-    "role": "Head of Marketing",
-    "photo": "",
-    "bio": "Bio coming soon.",
-    "expertise": [],
-    "relatedWork": [],
-    "note": "Added per Revision Round 1 (2026-07-20). Name, role confirmed by Airik — photo and bio pending, not fabricated."
-  },
-  {
-    "name": "Dennis Cancer",
-    "role": "Head of Finance",
-    "photo": "",
-    "bio": "Bio coming soon.",
-    "expertise": [],
-    "relatedWork": [],
-    "note": "Added per Revision Round 1 (2026-07-20). Name, role confirmed by Airik — photo and bio pending, not fabricated."
+    "note": "photo is Airik's real portrait (from PHOTOGRAPHY/airik.jpg), added 2026-07-18. relatedWork is an optional array of {\"title\": ..., \"href\": ...} pairs pointing at /work/<slug>.html pages; the About page modal renders a \"Related Work\" list automatically once this is populated. Per client request (2026-07-21 revision), only Airik is listed on the team page for now — other team members can be re-added here once Airik wants them shown again."
   }
 ]
