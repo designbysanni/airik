@@ -181,17 +181,25 @@ what's left — genuinely still open, not fabricated to fill a gap.
   photo and bio. No other team member bios/photos received yet — if AAEC has
   more team members, this needs input from Airik; not something to invent.
 - **LFTLR**: `existingSiteUrl` in `/data/lftlr.json` is confirmed
-  (`https://lftlr.com`, linked from the page's CTA). `/lftlr.html`'s
-  Overview section now has real, confirmed copy (references the real "SZN 3"
-  branding visible in Airik's own photography). The brief's Episodes and
-  Timeline sections were **removed** rather than filled with placeholder or
-  invented content — there was no real content for either, and the page's
-  CTA already sends visitors to the full site (which is the actual source
-  for that content) rather than duplicating it here. Revisit if Airik wants
-  Episodes/Timeline built out on this site specifically rather than just
-  linked externally. Names/roles for the people in the Featured Artists
-  photos are still unconfirmed — captions say "Live From The Living Room,
-  SZN 3" rather than guessing names.
+  (`https://lftlr.com`, linked from the page's CTA), but `/lftlr.html` is
+  still hand-written static HTML, not fetched from that JSON file (same as
+  before — only edit the HTML directly). As of 2026-07-21, `/lftlr.html` was
+  rebuilt to closely mirror the real LFTLR page on Airik's own portfolio
+  (ericcrawford.myportfolio.com/live-from-the-living-room): the Overview
+  copy (founder/oversight + press/label partners paragraphs), a 3-video
+  "Watch" section (the exact 3 Adobe/Behance CCV embeds from that portfolio
+  page — confirmed as 3 distinct episodes, not duplicates, by their visibly
+  different title-card graphics), and dedicated "Chicago's Top 50 Music
+  Video Countdown" and "Live From The Living Room Ink" sub-sections with
+  real copy and real images are all sourced directly from that page. Images
+  live in `assets/images/work/lftlr/pf-01.jpg` through `pf-12.jpg`
+  (downloaded from the portfolio site, resized to the same pipeline as
+  everything else). **`pf-13.jpg` exists in that folder but is deliberately
+  unused** — it's a nightlife/club photo that reads as party content, not
+  the corporate tone the client has repeatedly asked for site-wide; don't
+  add it to the page without checking with Airik first. Names/roles for the
+  people in the "From The Set" photos are still unconfirmed — captions say
+  "Live From The Living Room, SZN 5" rather than guessing names.
 - **Testimonials**: removed entirely from the Home page (was a single
   "PLACEHOLDER" quote, `data/testimonials.json` is now `[]`) rather than
   ship a fake or empty-looking section. To bring it back once real
