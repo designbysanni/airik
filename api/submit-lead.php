@@ -215,31 +215,12 @@ if ($notifyTo) {
     }
 }
 
-// TEMP DIAGNOSTIC — remove after confirming why notification emails aren't
-// arriving. Only active when the request carries ?debug=aaec2026, so this
-// never leaks internals to a normal form submission.
-$debug = null;
-if (($_GET['debug'] ?? '') === 'aaec2026') {
-    $debug = [
-        'ghlOk' => $ghlOk,
-        'ghlError' => $ghlError,
-        'notifyTo' => $notifyTo,
-        'notifyOk' => $notifyOk,
-        'mailFunctionExists' => function_exists('mail'),
-        'lastPhpError' => error_get_last(),
-    ];
-}
-
 if ($notifyOk || $ghlOk) {
-    $out = ['success' => true];
-    if ($debug !== null) $out['debug'] = $debug;
-    echo json_encode($out);
+    echo json_encode(['success' => true]);
 } else {
     http_response_code(502);
-    $out = [
+    echo json_encode([
         'success' => false,
         'error' => 'Could not send this right now. Please email info@airikart.com directly.',
-    ];
-    if ($debug !== null) $out['debug'] = $debug;
-    echo json_encode($out);
+    ]);
 }
