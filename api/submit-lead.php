@@ -77,12 +77,18 @@ if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 if ($source === 'contact') {
+    $phone = clean($data['phone'] ?? '', 30);
+    if ($phone === '') {
+        http_response_code(422);
+        echo json_encode(['success' => false, 'error' => 'Phone number is required']);
+        exit;
+    }
     $tag = 'Website Lead - Contact';
     $noteTitle = 'Website Contact Form Submission';
     $projectType = clean($data['project-type'] ?? '', 100);
     $budget = clean($data['budget'] ?? '', 100);
     $message = clean($data['message'] ?? '', 3000);
-    $noteBody = "Project type: {$projectType}\nBudget: {$budget}\nMessage: {$message}";
+    $noteBody = "Phone: {$phone}\nProject type: {$projectType}\nBudget: {$budget}\nMessage: {$message}";
     $ghlSource = 'Website - Start a Project form';
 } else {
     $tag = 'Website Lead - Careers';
@@ -132,12 +138,16 @@ function ghlRequest($method, $path, $token, ?array $body = null) {
 $ghlOk = true;
 $ghlError = null;
 try {
-    $upsert = ghlRequest('POST', '/contacts/upsert', $config['ghl_token'], [
+    $upsertBody = [
         'name' => $name,
         'email' => $email,
         'locationId' => $config['ghl_location_id'],
         'source' => $ghlSource,
-    ]);
+    ];
+    if ($source === 'contact') {
+        $upsertBody['phone'] = $phone;
+    }
+    $upsert = ghlRequest('POST', '/contacts/upsert', $config['ghl_token'], $upsertBody);
 
     $contactId = $upsert['contact']['id'] ?? null;
     if (!$contactId) {
@@ -175,6 +185,7 @@ if ($notifyTo) {
         "Email: {$email}",
     ];
     if ($source === 'contact') {
+        $lines[] = "Phone: {$phone}";
         $lines[] = "Project type: {$projectType}";
         $lines[] = "Budget: {$budget}";
         $lines[] = "Message: {$message}";
