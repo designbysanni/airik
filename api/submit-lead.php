@@ -10,18 +10,40 @@
  * https://marketplace.gohighlevel.com/docs/ghl/contacts/add-tags
  * https://marketplace.gohighlevel.com/docs/ghl/contacts/create-note
  *
- * The "notify someone immediately" requirement is handled directly here via
- * PHP mail(), NOT via a GHL workflow — GHL's workflow builder turned out to
- * have real UI friction for "email an arbitrary address" (its "Email"
- * action only sends to the contact; "Internal Notification" only reaches
- * GHL platform users, not arbitrary addresses) that isn't worth fighting
- * when this script already has every field in hand. GHL's tag + note are
- * still created for his CRM/pipeline, but the notification email no longer
- * depends on that succeeding, or on GHL workflow config at all — see
- * $notifyResult below, which fires independently of the GHL try/catch.
+ * The "notify someone immediately" requirement is handled directly here,
+ * NOT via a GHL workflow — GHL's workflow builder turned out to have real
+ * UI friction for "email an arbitrary address" (its "Email" action only
+ * sends to the contact; "Internal Notification" only reaches GHL platform
+ * users, not arbitrary addresses) that isn't worth fighting when this
+ * script already has every field in hand. GHL's tag + note are still
+ * created for his CRM/pipeline, but the notification email no longer
+ * depends on that succeeding, or on GHL workflow config at all — see the
+ * notification block below, which fires independently of the GHL try/catch.
+ *
+ * Notification delivery: sends over authenticated SMTP (via the vendored
+ * PHPMailer in api/lib/PHPMailer/) using the real info@airikart.com
+ * mailbox, not PHP's raw mail(). This is a deliberate fix (2026-08-29) —
+ * mail() reported success on every call but Airik never received a single
+ * notification, even after SPF/DKIM/DMARC were all confirmed correctly
+ * configured for the domain. Root cause: mail() on Hostinger shared
+ * hosting sends through the web server's local relay, which is a
+ * completely different outbound path than the domain's actual
+ * (DKIM-signed) mailbox infrastructure — the DNS records being correct
+ * doesn't help if the message never goes out through the server they
+ * authenticate. Authenticating as the real mailbox and sending via its own
+ * SMTP server sidesteps that gap entirely. See config.example.php for the
+ * new smtp_* keys this requires; mail() is kept as a fallback only for the
+ * (temporary) case where those keys aren't filled in yet.
  */
 
 header('Content-Type: application/json');
+
+require_once __DIR__ . '/lib/PHPMailer/Exception.php';
+require_once __DIR__ . '/lib/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/lib/PHPMailer/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -200,18 +222,63 @@ if ($notifyTo) {
     $body = implode("\n", $lines);
 
     $fromAddress = $config['from_email'] ?? 'info@airikart.com';
-    $headers = [
-        'From: AAEC Website <' . $fromAddress . '>',
-        'Reply-To: ' . $email, // hit reply and it goes straight to the lead
-        'Content-Type: text/plain; charset=UTF-8',
-        'X-Priority: 1 (Highest)',
-        'X-MSMail-Priority: High',
-        'Importance: High',
-    ];
+    $notifyError = null;
 
-    $notifyOk = @mail($notifyTo, $subject, $body, implode("\r\n", $headers));
+    // Preferred path: authenticated SMTP through the real mailbox (see the
+    // file-level doc comment above for why this replaced mail()).
+    if (!empty($config['smtp_host']) && !empty($config['smtp_user']) && !empty($config['smtp_pass'])) {
+        try {
+            $mailer = new PHPMailer(true);
+            $mailer->isSMTP();
+            $mailer->Host = $config['smtp_host'];
+            $mailer->Port = $config['smtp_port'] ?? 465;
+            $mailer->SMTPAuth = true;
+            $mailer->Username = $config['smtp_user'];
+            $mailer->Password = $config['smtp_pass'];
+            $mailer->SMTPSecure = $config['smtp_secure'] ?? PHPMailer::ENCRYPTION_SMTPS; // 'ssl' (465) or 'tls' for STARTTLS (587)
+            $mailer->Timeout = 15;
+            $mailer->CharSet = PHPMailer::CHARSET_UTF8;
+
+            $mailer->setFrom($fromAddress, 'AAEC Website');
+            foreach (explode(',', $notifyTo) as $recipient) {
+                $recipient = trim($recipient);
+                if ($recipient !== '') {
+                    $mailer->addAddress($recipient);
+                }
+            }
+            $mailer->addReplyTo($email, $name); // hit reply and it goes straight to the lead
+            $mailer->Subject = "URGENT - {$subjectLine}";
+            $mailer->Body = $body;
+            $mailer->isHTML(false);
+            $mailer->priority = 1;
+            $mailer->addCustomHeader('X-MSMail-Priority', 'High');
+            $mailer->addCustomHeader('Importance', 'High');
+
+            $mailer->send();
+            $notifyOk = true;
+        } catch (PHPMailerException $e) {
+            $notifyError = $mailer->ErrorInfo ?: $e->getMessage();
+            error_log('submit-lead.php: SMTP send failed — ' . $notifyError);
+        }
+    } else {
+        error_log('submit-lead.php: smtp_host/smtp_user/smtp_pass not configured, falling back to mail() — see config.example.php');
+    }
+
+    // Fallback only: raw mail() is unreliable on this host (see doc comment
+    // above) but still better than nothing while SMTP isn't configured yet.
     if (!$notifyOk) {
-        error_log('submit-lead.php: mail() to notify_email failed');
+        $headers = [
+            'From: AAEC Website <' . $fromAddress . '>',
+            'Reply-To: ' . $email,
+            'Content-Type: text/plain; charset=UTF-8',
+            'X-Priority: 1 (Highest)',
+            'X-MSMail-Priority: High',
+            'Importance: High',
+        ];
+        $notifyOk = @mail($notifyTo, $subject, $body, implode("\r\n", $headers));
+        if (!$notifyOk) {
+            error_log('submit-lead.php: mail() fallback to notify_email also failed');
+        }
     }
 }
 
