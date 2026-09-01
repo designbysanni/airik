@@ -226,7 +226,6 @@ if ($notifyTo) {
 
     // Preferred path: authenticated SMTP through the real mailbox (see the
     // file-level doc comment above for why this replaced mail()).
-    $notifyMethod = 'none';
     if (!empty($config['smtp_host']) && !empty($config['smtp_user']) && !empty($config['smtp_pass'])) {
         try {
             $mailer = new PHPMailer(true);
@@ -257,7 +256,6 @@ if ($notifyTo) {
 
             $mailer->send();
             $notifyOk = true;
-            $notifyMethod = 'smtp';
         } catch (PHPMailerException $e) {
             $notifyError = $mailer->ErrorInfo ?: $e->getMessage();
             error_log('submit-lead.php: SMTP send failed — ' . $notifyError);
@@ -278,37 +276,18 @@ if ($notifyTo) {
             'Importance: High',
         ];
         $notifyOk = @mail($notifyTo, $subject, $body, implode("\r\n", $headers));
-        $notifyMethod = $notifyOk ? 'mail()-fallback' : 'none';
         if (!$notifyOk) {
             error_log('submit-lead.php: mail() fallback to notify_email also failed');
         }
     }
 }
 
-// TEMP DIAGNOSTIC — remove after confirming the SMTP fix actually delivers.
-// Only active when the request carries ?debug=aaec2026.
-$debug = null;
-if (($_GET['debug'] ?? '') === 'aaec2026') {
-    $debug = [
-        'ghlOk' => $ghlOk,
-        'ghlError' => $ghlError,
-        'notifyTo' => $notifyTo ?? null,
-        'notifyOk' => $notifyOk,
-        'notifyMethod' => $notifyMethod ?? 'n/a',
-        'notifyError' => $notifyError ?? null,
-    ];
-}
-
 if ($notifyOk || $ghlOk) {
-    $out = ['success' => true];
-    if ($debug !== null) $out['debug'] = $debug;
-    echo json_encode($out);
+    echo json_encode(['success' => true]);
 } else {
     http_response_code(502);
-    $out = [
+    echo json_encode([
         'success' => false,
         'error' => 'Could not send this right now. Please email info@airikart.com directly.',
-    ];
-    if ($debug !== null) $out['debug'] = $debug;
-    echo json_encode($out);
+    ]);
 }
